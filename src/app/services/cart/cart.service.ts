@@ -7,8 +7,6 @@ import { CartItem } from '../../models/CartItem';
 })
 export class CartService {
 
-  constructor() { }
-
   cart: Cart = {
     items: [],
     finalPrice: 0,

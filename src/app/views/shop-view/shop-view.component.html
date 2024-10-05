@@ -14,24 +14,33 @@
         <a href=""><p>Clean Filters</p></a>
       </div>
     </div>
-    <mat-accordion *ngFor="let item of accordionFilters" multi>
+    @for (item of accordionFilters; track item) {
+    <mat-accordion multi>
       <mat-expansion-panel class="text-black mb-2">
         <mat-expansion-panel-header>
           <mat-panel-description>
             <b>{{ item.name }}</b>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <ng-container *ngIf="item.name === 'Sale'">
-          <mat-checkbox *ngFor="let discount of item.discounts" class="w-100">
+        @if (item.name === 'Sale') {
+        <ng-container>
+          @for (discount of item.discounts; track discount) {
+          <mat-checkbox class="w-100">
             <span class="text-black">{{ discount }}%</span>
           </mat-checkbox>
+          }
         </ng-container>
-        <ng-container *ngIf="item.name === 'Categories'">
-          <mat-checkbox *ngFor="let categorie of item.categories" class="w-100">
-            <span class="text-black">{{ categorie }}</span>
+        } @if (item.name === 'Categories') {
+
+        <ng-container>
+          @for (category of item.categories; track category) {
+          <mat-checkbox class="w-100">
+            <span class="text-black">{{ category }}</span>
           </mat-checkbox>
+          }
         </ng-container>
-        <ng-container *ngIf="item.name === 'Prices'">
+        } @if (item.name === 'Prices') {
+        <ng-container>
           <mat-checkbox class="w-100">
             <mat-slider class="w-100" min="200" max="500000" color="accent">
               <input value="0" matSliderStartThumb />
@@ -39,8 +48,10 @@
             </mat-slider>
           </mat-checkbox>
         </ng-container>
+        }
       </mat-expansion-panel>
     </mat-accordion>
+    }
   </mat-drawer>
   <mat-drawer-content>
     <div class="container text-black">
@@ -52,20 +63,21 @@
             {{ filtersState }} filters
           </h4>
         </div>
-      <!--  <button class="btn btn-primary bg-dark border-0">
+        <!--  <button class="btn btn-primary bg-dark border-0">
           Order by Most Recent
         </button>-->
       </div>
       <div class="container">
         @if (this.products.length === 0) {
-            <p>No se encontraron productos</p>
+        <p>No se encontraron productos</p>
         }
         <div class="row d-flex">
+          @for (product of products; track product) {
           <app-product-card
-            *ngFor="let product of products"
             class="col-xl-3 mb-2 text-center"
             [productSend]="product"
           ></app-product-card>
+          }
         </div>
       </div>
     </div>

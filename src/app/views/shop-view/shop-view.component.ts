@@ -46,7 +46,7 @@ export class ShopViewComponent {
 
     this.route.params.subscribe(params => {
       this.category = params['category'];
-      this.subcategory = params['subcategory'] || null; // Si no hay subcategoría, asigna null
+      this.subcategory = params['subcategory'] || null;
       this.loadProducts();
     });
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
@@ -15,10 +15,10 @@ export class AuthService {
 
   private authUrl = 'http://localhost:3000/admin/login'
 
-  constructor(private http: HttpClient) { }
+  private _http = inject(HttpClient)
 
   public authenticate(credentials: {adminUser: string, adminPassword: string}) : Observable<AuthResponse> {
-    return this.http.post<any>(this.authUrl, credentials)
+    return this._http.post<any>(this.authUrl, credentials)
   }
 
   public isAuthenticated(): boolean {

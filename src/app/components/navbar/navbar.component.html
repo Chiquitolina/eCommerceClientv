@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white">
   <div class="container-fluid row">
-    <div 
-    class="col-3 d-flex justify-content-center">
-    <a [routerLink]="['/']">
+    <div class="col-3 d-flex justify-content-center">
+      <a [routerLink]="['/']">
         <img
           class="logo-nav"
           src="https://nikearprod.vtexassets.com/assets/vtex/assets-builder/nikearprod.store/2.0.63/icons/Assets_for_off%20platform/swoosh___33f7ffaf2fc124733c2c4a60a12a1160.svg"
@@ -13,7 +12,8 @@
     <ul
       class="navbar-nav col-8 me-auto mb-2 mb-lg-0 d-flex justify-content-center"
     >
-      <li class="nav-item w-25" *ngFor="let category of categories">
+      @for (category of categories; track category) {
+      <li class="nav-item w-25">
         <button
           class="text-black w-75 btn btn-primary dropdown-toggle"
           mat-button
@@ -23,24 +23,25 @@
           <b>{{ category.name | capitalize }}</b>
         </button>
 
-        <!-- Menú anidado de subcategorías -->
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          <ng-container
-            *ngIf="category.subcategories.length > 0; else noSubcategories"
-          >
+          @if (category.subcategories.length > 0) {
+          <ng-container>
+            @for (subcategory of category.subcategories; track subcategory) {
             <button
               mat-menu-item
-              *ngFor="let subcategory of category.subcategories"
               [routerLink]="['/tienda', category.name, subcategory.name]"
-              >
-              {{ subcategory.name | capitalize | replaceChar: '-':' '  }}
+            >
+              {{ subcategory.name | capitalize | replaceChar : "-" : " " }}
             </button>
+            }
           </ng-container>
+          }
           <ng-template #noSubcategories>
             <button mat-menu-item>No hay subcategorías</button>
           </ng-template>
         </mat-menu>
       </li>
+      }
     </ul>
   </div>
 </nav>

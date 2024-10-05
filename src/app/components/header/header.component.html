@@ -1,43 +1,44 @@
 <div class="w-100 bg-dark d-flex justify-content-center p-2 text-white">
-    <b><span>6 cuotas sin interés en todo el sitio</span></b>
-  </div>
-  <app-navbar></app-navbar>
-  <div
-    id="carouselExampleInterval"
-    class="carousel slide"
-    data-bs-ride="carousel"
-    class="text-black"
-    class="bg-light text-dark"
-  >
+  <b><span>6 cuotas sin interés en todo el sitio</span></b>
+</div>
+<app-navbar></app-navbar>
+<div
+  id="carouselExampleInterval"
+  class="carousel slide"
+  data-bs-ride="carousel"
+  class="text-black"
+  class="bg-light text-dark"
+>
   <div class="carousel-inner text-center text-black">
-      <div
-        class="carousel-item mt-2"
-        *ngFor="let item of carouselHeaderObject; let i = index"
-        [ngClass]="{'active': i === 0}"
-        data-bs-interval="5000"
-      >
-        {{ item.key }}
-        <p><a href="">{{item.value}}</a></p>
-  
-      </div>
+    @for (item of carouselHeaderObject; track item; let i = $index) {
+    <div
+      class="carousel-item mt-2"
+      [ngClass]="{ active: i === 0 }"
+      data-bs-interval="5000"
+    >
+      {{ item.key }}
+      <p>
+        <a href="">{{ item.value }}</a>
+      </p>
     </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    }
   </div>
-  
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleInterval"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleInterval"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
