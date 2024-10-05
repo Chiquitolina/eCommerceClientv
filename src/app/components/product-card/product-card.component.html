@@ -1,0 +1,26 @@
+<mat-card>
+    <!-- <button class="ratio" *ngIf="productSend.ratio" mat-fab color="accent">
+       <b><p class="m-0 mt-2">Ratio</p></b>
+       <p class="m-0">{{ productSend.ratio }}</p>
+     </button> -->
+     <div class="d-flex justify-content-center">
+       <img
+         class="card-img-top"
+         src="{{ productSend.image }}"
+         alt="Card image cap"
+         [routerLink]="['/product', productSend.id]"
+       />
+     </div>
+   
+     <div class="card-body">
+       <div class="card-details">
+         <h6 class="">{{ productSend.name }}</h6>
+         <p class="card-text text-secondary">{{ productSend.shortdescription }}</p>
+       </div>
+       <div class="d-flex justify-content-center w-100 mb-3 card-product-price mt-3">
+         <h5 class="m-1">
+           $<b>{{ productSend.price }}</b>
+         </h5>
+       </div>
+     </div>
+   </mat-card>

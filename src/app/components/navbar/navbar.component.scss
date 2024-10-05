@@ -1,0 +1,44 @@
+
+
+a {
+    width: 9rem;
+  }
+
+nav {
+  min-height: 3.5rem;
+}
+
+.logo-nav {
+  width: 3rem; 
+  border-radius: 1rem;
+  margin-left: 2.5rem;
+}
+
+.nav-toggle-btn {
+  width: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+button {
+  background-color: initial;
+  border: none;
+  color: black;
+  font-weight: 300;
+}
+
+nav button:hover {
+  background-color: initial;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+}
+
+button:active {
+  background-color: initial;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+}
+
+button:disabled {
+  
+  color: grey;
+}

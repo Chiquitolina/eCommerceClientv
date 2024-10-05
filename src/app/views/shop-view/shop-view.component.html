@@ -1,0 +1,73 @@
+<mat-drawer-container autosize>
+  <mat-drawer
+    class="w-25 bg-light text-black"
+    #drawer
+    mode="side"
+    opened
+    (openedChange)="onDrawerToggle($event)"
+  >
+    <div class="row">
+      <div
+        class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-1"
+      >
+        <h1>Filters</h1>
+        <a href=""><p>Clean Filters</p></a>
+      </div>
+    </div>
+    <mat-accordion *ngFor="let item of accordionFilters" multi>
+      <mat-expansion-panel class="text-black mb-2">
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            <b>{{ item.name }}</b>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="item.name === 'Sale'">
+          <mat-checkbox *ngFor="let discount of item.discounts" class="w-100">
+            <span class="text-black">{{ discount }}%</span>
+          </mat-checkbox>
+        </ng-container>
+        <ng-container *ngIf="item.name === 'Categories'">
+          <mat-checkbox *ngFor="let categorie of item.categories" class="w-100">
+            <span class="text-black">{{ categorie }}</span>
+          </mat-checkbox>
+        </ng-container>
+        <ng-container *ngIf="item.name === 'Prices'">
+          <mat-checkbox class="w-100">
+            <mat-slider class="w-100" min="200" max="500000" color="accent">
+              <input value="0" matSliderStartThumb />
+              <input value="400" matSliderEndThumb />
+            </mat-slider>
+          </mat-checkbox>
+        </ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="container text-black">
+      <div class="w-100 d-flex flex-column justify-content-end align-items-end">
+        <h2 class="titulo mb-4">Store</h2>
+        <div class="d-flex">
+          <mat-icon class="m-1">filter_list</mat-icon>
+          <h4 mat-icon-button (click)="drawer.toggle()">
+            {{ filtersState }} filters
+          </h4>
+        </div>
+      <!--  <button class="btn btn-primary bg-dark border-0">
+          Order by Most Recent
+        </button>-->
+      </div>
+      <div class="container">
+        @if (this.products.length === 0) {
+            <p>No se encontraron productos</p>
+        }
+        <div class="row d-flex">
+          <app-product-card
+            *ngFor="let product of products"
+            class="col-xl-3 mb-2 text-center"
+            [productSend]="product"
+          ></app-product-card>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

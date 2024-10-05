@@ -1,0 +1,45 @@
+mat-card {
+    background-color: whitesmoke;
+  }
+  
+  .card {
+    width: 18rem;
+    height: 30rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-product-price {
+    border-radius: 3rem;
+    border: 3px solid white;
+    background-color: whitesmoke;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 14rem;
+    border-radius: 1rem;
+    border: 2px solid white;
+    cursor: pointer;
+    margin: 1rem;
+  }
+  
+  .ratio {
+    position: absolute;
+    right: 0rem;
+    top: -0.5rem;
+  }
+  
+  .title-product {
+    font-size: medium;
+  }
+  
+  button {
+    cursor: pointer;
+  }
