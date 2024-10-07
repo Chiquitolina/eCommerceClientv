@@ -6,15 +6,31 @@
     opened
     (openedChange)="onDrawerToggle($event)"
   >
-    <div class="row">
+    <div class="row w-100">
       <div
         class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-1"
       >
-        <h1>Filters</h1>
+        <h1>Filtros</h1>
         <a href=""><p>Clean Filters</p></a>
       </div>
     </div>
-    @for (item of accordionFilters; track item) {
+
+    <mat-accordion multi>
+      <mat-expansion-panel [expanded]="true" class="text-black mb-2">
+        <mat-expansion-panel-header>
+          <mat-panel-description>
+            <b>Filtros aplicados ({{ filtersApplied.length }})</b>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="d-flex flex-column">
+          @for (filter of filtersApplied; track filter) {
+          <mat-checkbox [checked]="true">{{ filter }}</mat-checkbox>
+          }
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    @for (item of accordionFilters; track item) { @if (item.name !==
+    'Categories') {
     <mat-accordion multi>
       <mat-expansion-panel class="text-black mb-2">
         <mat-expansion-panel-header>
@@ -25,12 +41,20 @@
         @if (item.name === 'Sale') {
         <ng-container>
           @for (discount of item.discounts; track discount) {
-          <mat-checkbox class="w-100">
-            <span class="text-black">{{ discount }}%</span>
+          <mat-checkbox
+            class="w-100"
+            (click)="addOrRemoveSizeFromFiltersApplied(discount+'%')"
+          >
+            <span class="text-black"
+              ><i>{{ discount }}%</i></span
+            >
           </mat-checkbox>
           }
         </ng-container>
-        } @if (item.name === 'Categories') {
+
+        }
+
+        <!-- @if (item.name === 'Categories') {
 
         <ng-container>
           @for (category of item.categories; track category) {
@@ -39,35 +63,61 @@
           </mat-checkbox>
           }
         </ng-container>
-        } @if (item.name === 'Prices') {
+    } -->
+        @if (item.name === 'Prices') {
+        <ng-container class="d-flex">
+          <mat-checkbox class="w-100"> </mat-checkbox>
+          <p-slider
+            [disabled]="true"
+            [(ngModel)]="rangeValues"
+            [range]="true"
+            styleClass="w-14rem"
+          />
+          <div class="w-100 d-flex justify-content-between mt-1">
+            <span
+              ><i>{{ rangeValues[0] }}</i></span
+            >
+            <span
+              ><i>{{ rangeValues[1] }}</i></span
+            >
+          </div>
+        </ng-container>
+        } @if (item.name === 'Size') {
         <ng-container>
-          <mat-checkbox class="w-100">
-            <mat-slider class="w-100" min="200" max="500000" color="accent">
-              <input value="0" matSliderStartThumb />
-              <input value="400" matSliderEndThumb />
-            </mat-slider>
-          </mat-checkbox>
+          <div class="row w-100 d-flex flex-wrap">
+            @for (size of sizes; track size) {
+            <div
+              class="col-2 w-25 border text-center m-2 border-grey pt-1 pb-1 rounded size"
+              (click)="addOrRemoveSizeFromFiltersApplied(size)"
+            >
+              <i>{{ size }}</i>
+            </div>
+            }
+          </div>
         </ng-container>
         }
       </mat-expansion-panel>
     </mat-accordion>
-    }
+    } }
   </mat-drawer>
   <mat-drawer-content>
     <div class="container text-black">
       <div class="w-100 d-flex flex-column justify-content-end align-items-end">
         <h2 class="titulo mb-4">Store</h2>
-        <div class="d-flex">
-          <mat-icon class="m-1">filter_list</mat-icon>
-          <h4 mat-icon-button (click)="drawer.toggle()">
-            {{ filtersState }} filters
-          </h4>
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <i>Productos encontrados: {{ products.length }}</i>
+          <div class="d-flex">
+            <mat-icon class="m-1">filter_list</mat-icon>
+            <h4 mat-icon-button (click)="drawer.toggle()">
+              {{ filtersState }} filters
+            </h4>
+          </div>
         </div>
         <!--  <button class="btn btn-primary bg-dark border-0">
           Order by Most Recent
         </button>-->
       </div>
-      <div class="container">
+      <div class="container mt-2">
         @if (this.products.length === 0) {
         <p>No se encontraron productos</p>
         }

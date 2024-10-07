@@ -38,7 +38,7 @@
           <div class="d-flex flex-wrap">
             @for (size of product?.sizes; track size) {
             <div
-              class="text-center col-xl-2 col-sm-2 p-3 rounded m-1 size border"
+              class="text-center d-flex justify-content-center col-xl-2 col-sm-2 p-3 rounded m-1 size border"
               [ngClass]="{
                 noAvailableSize: size.quantity === 0,
                 'selected-size': size.size == selectedSize

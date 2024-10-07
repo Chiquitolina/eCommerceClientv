@@ -4,6 +4,12 @@ export interface ProductCategory {
     calzados: string[];
     ropa: string[];
 }
+export interface AccordionFilter {
+    name: AccordionFilters;
+    label: string;
+    discounts?: number[]; // Opcional para el filtro de 'Sale'
+    categories?: Categories[]; // Opcional para el filtro de 'Categories'
+  }
 
 export enum carouselHeaderOptions {
     DESCUENTO_OFF = 'Hasta 50% off en Seleccionados',
@@ -49,13 +55,6 @@ export enum AccordionFilters {
     CATEGORIES = 'Categories',
     PRICES = 'Prices'
 }
-
-export interface AccordionFilter {
-    name: AccordionFilters;
-    label: string;
-    discounts?: number[]; // Opcional para el filtro de 'Sale'
-    categories?: Categories[]; // Opcional para el filtro de 'Categories'
-  }
   
 export const PRODUCT_SIZES: { [key in Categories]: (number | string)[] } = {
     [Categories.CALZADOS]: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14],
