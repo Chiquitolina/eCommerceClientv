@@ -53,4 +53,5 @@ export class NavbarComponent {
       error: (e) => console.error(e),
     });
   }
+
 }

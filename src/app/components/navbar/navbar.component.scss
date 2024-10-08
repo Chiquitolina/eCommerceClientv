@@ -42,3 +42,26 @@ button:disabled {
   
   color: grey;
 }
+
+/* Centrar los elementos dentro del navbar */
+.navbar-nav {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .nav-item {
+    margin: 0 10px; /* Espaciado entre elementos */
+  }
+  
+  /* Para centrar el texto en los enlaces del dropdown */
+  .nav-link {
+    text-align: center; 
+  }
+  
+  /* Ajustes adicionales para la visualización en dispositivos móviles */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+      align-items: center; /* Centra los elementos */
+    }
+  }
