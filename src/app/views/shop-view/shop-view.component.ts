@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { PRODUCT_SIZES } from '../../common/constants';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-shop-view',
@@ -102,4 +103,12 @@ export class ShopViewComponent {
       this.filtersApplied.push(size);
     }
   }
+
+  onCheckboxChange(filter: string | number, event: MatCheckboxChange): void {
+    if (!event.checked) {
+      // Si el checkbox está desmarcado, elimina el filter del array
+      this.filtersApplied = this.filtersApplied.filter((element: string | number) => element !== filter);
+    }
+  }
+  
 }
