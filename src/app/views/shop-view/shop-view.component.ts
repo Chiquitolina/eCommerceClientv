@@ -1,23 +1,27 @@
 import { Component, inject, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+import { Product } from '../../models/Products';
+import { ACCORDION_FILTERS, AccordionFilter } from '../../common/constants';
+import { PRODUCT_SIZES } from '../../common/constants';
+
 import { MatAccordion } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ACCORDION_FILTERS, AccordionFilter } from '../../common/constants';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatIcon } from '@angular/material/icon';
-import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
-import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
+import { SliderModule } from 'primeng/slider';
+
+import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductsService } from '../../services/products/products.service';
-import { Product } from '../../models/Products';
-import { ActivatedRoute } from '@angular/router';
-import { SliderModule } from 'primeng/slider';
-import { FormsModule } from '@angular/forms';
-import { PRODUCT_SIZES } from '../../common/constants';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 
 @Component({
   selector: 'app-shop-view',
@@ -32,30 +36,32 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
     MatExpansionModule,
     MatCheckboxModule,
     MatIcon,
-    MatSliderModule,
     MatAccordion,
     SliderModule,
     FormsModule,
+    CapitalizePipe,
   ],
   templateUrl: './shop-view.component.html',
   styleUrl: './shop-view.component.scss',
   providers: [ProductsService],
 })
 export class ShopViewComponent {
-
   accordion = ViewChild(MatAccordion);
   productSer = inject(ProductsService);
   route = inject(ActivatedRoute);
 
-  filtersState: string = 'Hide';
-  filtersApplied : any = []
-
-  rangeValues: number[] = [20, 80];
-  sizes: any[] = [];
-
   products: Product[] = [];
 
+  filtersState: string = 'Hide';
+  filtersApplied: any = [];
+
+  rangeValues: number[] = [];
+  priceSliderState : boolean = false;
+  sizes: any[] = [];
+
   accordionFilters: AccordionFilter[] = ACCORDION_FILTERS;
+
+  sidebarVisible = false;
 
   onDrawerToggle(opened: boolean) {
     this.filtersState = opened ? 'Hide' : 'Show';
@@ -68,7 +74,7 @@ export class ShopViewComponent {
     // Suscribirse a los parámetros de la ruta y cargar productos cuando cambien
     this.route.params.subscribe((params) => {
       this.category = params['category'];
-      this.subcategory = params['subcategory'] || null;
+      this.subcategory = params['subcategory'];
       this.loadProducts();
     });
   }
@@ -84,11 +90,13 @@ export class ShopViewComponent {
         this.products = data;
         console.log('Productos cargados:', data);
 
-        this.subcategory === 'calzado'
-        ? (this.sizes = PRODUCT_SIZES.Calzados)
-        : (this.sizes = PRODUCT_SIZES.Ropa);
+        this.rangeValues = [0, this.getMaxProductPrice()]
 
-        console.log(this.sizes)
+        this.subcategory === 'calzado'
+          ? (this.sizes = PRODUCT_SIZES.Calzados)
+          : (this.sizes = PRODUCT_SIZES.Ropa);
+
+        console.log(this.sizes);
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);
@@ -98,7 +106,9 @@ export class ShopViewComponent {
 
   addOrRemoveSizeFromFiltersApplied(size: string | number): void {
     if (this.filtersApplied.includes(size)) {
-      this.filtersApplied = this.filtersApplied.filter((element: string | number) => element !== size);
+      this.filtersApplied = this.filtersApplied.filter(
+        (element: string | number) => element !== size
+      );
     } else {
       this.filtersApplied.push(size);
     }
@@ -106,9 +116,24 @@ export class ShopViewComponent {
 
   onCheckboxChange(filter: string | number, event: MatCheckboxChange): void {
     if (!event.checked) {
-      // Si el checkbox está desmarcado, elimina el filter del array
-      this.filtersApplied = this.filtersApplied.filter((element: string | number) => element !== filter);
+      this.filtersApplied = this.filtersApplied.filter(
+        (element: string | number) => element !== filter
+      );
     }
   }
-  
+
+  managePriceSliderState(event: MatCheckboxChange) {
+    this.priceSliderState = !this.priceSliderState
+  }
+
+  getMaxProductPrice() {
+    if (this.products.length == 0) {
+      return 0;
+    }
+    
+    return this.products.reduce((prev, current) => {
+      return (prev.price > current.price) ? prev : current;
+    }).price;
+  }
+
 }

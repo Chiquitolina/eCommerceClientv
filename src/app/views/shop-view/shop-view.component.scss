@@ -75,3 +75,35 @@ mat-panel-description {
 mat-slider {
   width: 3000px;
 }
+
+.resp-bar {
+  height: 4rem;
+  visibility: hidden;
+}
+
+.drawer-resp {
+display: none;
+}
+
+@media only screen and (max-width: 992px) {
+
+.filterStateAction, .filtersSideBar {
+ display: none;
+ visibility: hidden;
+}
+
+.resp-bar {
+  visibility: visible;
+}
+
+.drawer-resp {
+  display: block;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+
+}
+
