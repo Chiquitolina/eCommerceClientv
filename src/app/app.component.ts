@@ -6,6 +6,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
 import { CartService } from './services/cart/cart.service';
 import { CartItem } from './models/CartItem';
+import { Cart } from './models/Cart';
 import {
   MatDialog,
   MatDialogRef,
@@ -20,6 +21,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card'; // Si usas tarjetas
 import { MatDividerModule } from '@angular/material/divider'; // Si usas divisores
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -36,18 +38,21 @@ export class AppComponent {
   public cartSer = inject(CartService)
   dialog = inject(MatDialog)
 
+  currentCart! : Cart;
+  private cartSubscription!: Subscription;
+
   public checkoutEvent(side: any): void {
     side.toggle();
     this.openDialog('0ms', '0ms');
   }
 
   public cleanCartEvent() {
-    this.cartSer.cleanCart();
+    this.cartSer.clearCart();
     this.drawer.opened ? this.drawer.toggle() : 0;
   }
 
   public removeItem(itemcart: CartItem, drawer: MatDrawer, productname:string) {
-    this.cartSer.removeItemFromCart(itemcart, drawer);
+    this.cartSer.removeItemFromCart(itemcart);
    /* this.alertsServ.showAlert(
       `¡Producto ${productname} removido del carrito correctamente!`,
       'Cerrar',
@@ -57,7 +62,13 @@ export class AppComponent {
     );*/
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Nos suscribimos al observable del carrito
+    this.cartSubscription = this.cartSer.cart$.subscribe(cart => {
+      this.currentCart = cart;
+      console.log('Carrito actualizado:', this.currentCart);
+    });
+  }
 
   openDialog(
     enterAnimationDuration: string,
@@ -69,6 +80,13 @@ export class AppComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  
+
+  getCurrentCart(): void {
+     this.currentCart = this.cartSer.getCartValue();
+    console.log('Valor actual del carrito:', this.currentCart);
   }
 
 }

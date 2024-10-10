@@ -1,6 +1,6 @@
 <div class="mat-fab">
   <button class="minifab" mat-mini-fab color="accent">
-    <b>{{ this.cartSer.cart.items.length }}</b>
+    <b>{{ this.currentCart.totalItems }}</b>
   </button>
   <button
     class="minifabempty"
@@ -8,7 +8,7 @@
     mat-mini-fab
     color="accent"
     (click)="cleanCartEvent()"
-    [disabled]="cartSer.cart.items.length == 0"
+    [disabled]="this.currentCart.items.length == 0"
   >
     <mat-icon>remove_shopping_cart</mat-icon>
   </button>
@@ -16,7 +16,7 @@
     (click)="this.drawer.toggle()"
     mat-fab
     color="accent"
-    [disabled]="cartSer.cart.items.length == 0"
+    [disabled]="this.currentCart.items.length == 0"
   >
     <mat-icon>shopping_cart</mat-icon>
   </button>
@@ -33,11 +33,11 @@
       <div class="d-flex align-items-center w-100 justify-content-around mt-3">
         <div class="">
           <h3 class="">Precio final:</h3>
-          <h2 class="">{{ this.cartSer.cart.finalPrice }}</h2>
+          <h2 class="">{{ this.currentCart.finalPrice }}</h2>
         </div>
         <button
           mat-raised-button
-          class="btn"
+          class="btn bg-dark text-white"
           color="accent"
           (click)="checkoutEvent(drawer)"
         >

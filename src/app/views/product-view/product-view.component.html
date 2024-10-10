@@ -1,8 +1,8 @@
-<div [@enterState] class="container text-black">
+<div class="container text-black">
   <div class="row m-2 mt-5">
-    <div class="col-xl-7 col-md-6 div-half-one">
+    <div class="col-xl-7 col-md-12 div-half-one">
       <div class="row">
-        <div class="col col-xl-2 col-md-5 miniimgs">
+        <div class="col col-xl-2 col-md-2 col-sm-3 miniimgs">
           @for (item of product?.miniimgs; track item) {
           <div>
             <img
@@ -15,17 +15,17 @@
           </div>
           }
         </div>
-        <div class="col col-xl-10 col-md-12 col-sm-12">
-          <img class="w-100 rounded" src="{{ selectedImage }}" alt="" />
+        <div class="col col-xl-10 col-md-10 col-sm-12 borders">
+          <img class="w-100 rounded mb-2" src="{{ selectedImage }}" alt="" />
         </div>
       </div>
     </div>
     <div
-      class="col-xl-5 col-md-6 col-sm-12 div-half-two"
-      style="max-height: 31.5rem; overflow-y: auto; scrollbar-width: thin"
+      class="col-xl-5 col-md-12 col-sm-12 div-half-two"
+      style="max-height: 32rem; overflow-y: auto; scrollbar-width: thin"
     >
       <div class="row">
-        <h1>{{ product?.name }}</h1>
+        <h4>{{ product?.name }}</h4>
         <p class="text-secondary">{{ product?.shortdescription }}</p>
         <h4>
           <b>${{ product?.price }}</b>
@@ -50,7 +50,7 @@
             }
             <button
               mat-raised-button
-              class="btn btn-primary w-100 mt-2 mb-2 p-3 d-flex align-items-center justify-content-center bg-dark border-0"
+              class="btn btn-primary w-100 mt-4 mb-2 p-3 d-flex align-items-center justify-content-center bg-dark border-0"
               (click)="addProduct({product, cantidad: 1, priceconjunto: 0}, product.name)"
             >
               <b>Añadir al carrito</b>
@@ -73,13 +73,20 @@
             <mat-expansion-panel class="text-black bg-light">
               <mat-expansion-panel-header>
                 <mat-panel-title class="text-black">
-                  {{ item.key }}
+                  <b class="acordiontitle"><i>{{ item.key }}</i></b>
                 </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
               <ng-container>
                 {{ item.value }}
               </ng-container>
+              @if (item.key === 'Compartir') {
+              <ng-container>
+                <img width="40" src="/assets/whatsapp.png" alt="dsadas">
+                <img width="40" src="/assets/facebook.png" alt="dsadas">
+                <img width="40" src="/assets/twitter.png" alt="dsadas">
+              </ng-container>
+            }
             </mat-expansion-panel>
           </mat-accordion>
         </div>

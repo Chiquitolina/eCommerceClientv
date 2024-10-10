@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
 import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
-import {
-  trigger,
-  state,
-  animate,
-  style,
-  transition,
-} from '@angular/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -15,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [ArticlesDisplayComponent, HttpClientModule],
   templateUrl: './main-view.component.html',
   styleUrl: './main-view.component.scss',
-  animations: [
+ /* animations: [
     trigger('enterState', [
       state(
         'void',
@@ -48,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
         ),
       ]),
     ]),
-  ],
+  ] */
 })
 export class MainViewComponent {
 

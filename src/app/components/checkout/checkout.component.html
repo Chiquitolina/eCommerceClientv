@@ -1,1 +1,55 @@
-<p>checkout works!</p>
+<div class="text-dark">
+  <h2 class="m-3">Checkout</h2>
+  <mat-vertical-stepper [linear]="isLinear" #stepper color="accent">
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Revisá tus productos</ng-template>
+        <app-cart-items></app-cart-items>
+        <div>
+          <button
+          mat-raised-button
+            class="m-3 w-25 bg-dark text-white"
+            (click)="this.dialogRef.close()"
+            mat-button
+          >
+            Volver
+          </button>
+          <button
+          mat-raised-button
+            class="m-3 w-25 bg-dark text-white"
+            mat-button
+            matStepperNext
+            (click)="onNext($event)"
+          >
+            Siguiente
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Ir a pagar</ng-template>
+        <div class="m-0">
+          <h6 class="">Precio final:</h6>
+          <h3 class="">{{ this.currentCart.finalPrice.toFixed(2) }}</h3>
+        </div>
+        <div class="w-100 d-flex">
+          <button
+             mat-raised-button
+            class="m-3 w-50 bg-dark text-white"
+            color="accent"
+            (click)="abrirPago()"
+            [disabled]="!responser"
+          >
+            Finalizar compra
+          </button>
+
+          <button mat-raised-button
+          class="m-3 w-25 bg-dark text-white" mat-button matStepperPrevious>
+            Volver
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

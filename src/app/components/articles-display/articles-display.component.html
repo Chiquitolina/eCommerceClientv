@@ -1,22 +1,3 @@
-<!-- <div *ngIf="isLoading" class="w-100 d-flex justify-content-center">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div class="w-100 d-flex justify-content-center">
-    <div
-      [@enterState]="true"
-      class="row card-container w-100 d-flex justify-content-around mt-4 mb-4"
-    >
-      <div
-        *ngFor="let product of products"
-        class="col-xl-3 col-md-4 col-sm-5 text-center m-2 text-dark"
-      >
-        <app-product-card 
-          (productEdited)="loadProducts()"
-          [productSend]="product"
-        ></app-product-card>
-      </div>
-    </div>
-  </div> -->
   <p-carousel
     [value]="products" 
     [numVisible]="3" 
@@ -24,11 +5,10 @@
     [responsiveOptions]="responsiveOptions">
         <ng-template let-product pTemplate="item">
             <div
-            [@enterState]="true"
             class="row card-container w-100 d-flex justify-content-around mt-4 mb-4"
           >
             <div
-              class="w-75 text-center m-2 text-dark"
+              class="col-xl-10 col-md-8 col-sm-10 text-center m-2 text-dark"
             >
               <app-product-card 
                 [productSend]="product"

@@ -1,60 +1,62 @@
 button {
-    border-radius: 3rem;
+  border-radius: 3rem;
 }
 
 h1 {
-font-weight: bold   ;
+  font-weight: bold;
 }
 
 .noAvailableSize {
-    opacity: 0.25;
-    cursor:not-allowed;
-  }
+  opacity: 0.25;
+  cursor: not-allowed;
+}
 
 .size:hover:not(.noAvailableSize) {
-    background-color: black;
-    color: white;
-    cursor: pointer;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
 
 .cuotas-cartel {
-    height: 4rem;
+  height: 4rem;
 }
 
 a {
-    color: black;
+  color: black;
 }
 
 .miniimgs {
-    z-index: 10000;
-    cursor: pointer;
+  z-index: 10000;
+  cursor: pointer;
 }
 
 .selected-img {
-    border: 0.5px solid black;
+  border: 0.5px solid black;
 }
 
 .selected-size {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
-@media (max-width: 576px) {
+.acordiontitle {
+  font-weight: 500;
+}
 
-    .miniimgs {
-        display: none;
-    }
+@media (max-width: 768px) {
+  .miniimgs {
+    display: none;
+  }
 
-    .size {
-        width: 20%;
-    }
+  .size {
+    width: 20%;
+  }
 
-    .div-half-one {
-        width: 100%;
-    }
+  .div-half-one {
+    width: 100%;
+  }
 
-    .div-half-two {
-        width: 100%;
-    }
-
+  .div-half-two {
+    width: 100%;
+  }
 }

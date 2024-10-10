@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-
 @Component({
   selector: 'app-product-view',
   standalone: true,
