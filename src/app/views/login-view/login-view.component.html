@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="w-100 d-flex justify-content-end">
+    <h2 class="titulo mt-3">Login</h2>
+  </div>
+
+  <div class="w-100 d-flex justify-content-center">
+    <mat-card class="bg-light w-75 m-4">
+      <mat-card-content>
+        <form
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          class="d-flex flex-column w-100 bg-light justify-content-center align-items-center p-4"
+        >
+          <mat-form-field class="example-full-width w-50">
+            <input
+              matInput
+              placeholder="Email"
+              [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error
+              *ngIf="
+                emailFormControl.hasError('email') &&
+                !emailFormControl.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width w-50">
+            <input
+              color="accent"
+              matInput
+              placeholder="Password"
+              [formControl]="passwordFormControl"
+              [errorStateMatcher]="matcher"
+            />
+            <mat-error *ngIf="!passwordFormControl.hasError('required')">
+              Please enter a password
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button class="mt-5 bg-dark text-white w-50">
+            Login
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
