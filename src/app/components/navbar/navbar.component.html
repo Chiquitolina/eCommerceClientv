@@ -30,7 +30,8 @@
         class="navbar-nav col-12 me-auto mb-2 mb-lg-0 d-flex justify-content-center"
       >
         <!-- Iteración de categorías -->
-        <li class="nav-item w-100" *ngFor="let category of categories">
+         @for (category of categories; track category) {
+        <li class="nav-item w-100">
           <button
             class="text-black w-100 btn btn-primary dropdown-toggle"
             mat-button
@@ -41,23 +42,25 @@
           </button>
 
           <!-- Submenú de categorías con Angular Material -->
-          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <mat-menu class="bg-white" #menu="matMenu" [overlapTrigger]="false">
             <ng-container
               *ngIf="category.subcategories.length > 0; else noSubcategories"
             >
+            @for (subcategory of category.subcategories; track subcategory) {
               <button
                 mat-menu-item
-                *ngFor="let subcategory of category.subcategories"
                 [routerLink]="['/tienda', category.name, subcategory.name]"
               >
                 {{ subcategory.name | capitalize | replaceChar: '-':' ' }}
               </button>
+            }
             </ng-container>
             <ng-template #noSubcategories>
               <button mat-menu-item>No hay subcategorías</button>
             </ng-template>
           </mat-menu>
         </li>
+      }
       </ul>
     </div>
   </div>

@@ -1,0 +1,86 @@
+<mat-accordion multi>
+    <mat-expansion-panel [expanded]="true" class="text-black mb-2">
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <b>Filtros aplicados</b>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        @for (category of filters; track category) {       
+        <i><b>{{ category.key | capitalize }}:</b></i>
+        <span>{{ category.value }}</span>
+      }
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  @for (item of accordionFilters; track item) { @if (item.name !== 'Categories')
+  {
+  <mat-accordion multi>
+    <mat-expansion-panel class="text-black mb-2">
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          <b>{{ item.name }}</b>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      @if (item.name === 'Sale') {
+      <ng-container>
+        @for (discount of item.discounts; track discount) {
+        <mat-checkbox
+          class="w-100"
+          (click)="addOrRemoveSizeFromFiltersApplied(discount + '%')"
+        >
+          <span class="text-black"
+            ><i>{{ discount }}%</i></span
+          >
+        </mat-checkbox>
+        }
+      </ng-container>
+
+      }
+
+      <!-- @if (item.name === 'Categories') {
+
+      <ng-container>
+        @for (category of item.categories; track category) {
+        <mat-checkbox class="w-100">
+          <span class="text-black">{{ category }}</span>
+        </mat-checkbox>
+        }
+      </ng-container>
+  } -->
+      @if (item.name === 'Prices') {
+      <ng-container class="d-flex">
+        <mat-checkbox (change)="managePriceSliderState($event)" class="w-100">
+        </mat-checkbox>
+        <p-slider
+          [disabled]="!priceSliderState"
+          [(ngModel)]="range"
+          [range]="true"
+          styleClass="w-14rem"
+        />
+        <div class="w-100 d-flex justify-content-between mt-1">
+          <span
+            ><i>{{ range[0] }}</i></span
+          >
+          <span
+            ><i>{{ range[1] }}</i></span
+          >
+        </div>
+      </ng-container>
+      } @if (item.name === 'Size') {
+      <ng-container>
+        <div class="row w-100 d-flex flex-wrap">
+          @for (size of sizesReceived; track size) {
+          <div
+            class="col-2 w-25 border text-center m-2 border-grey pt-1 pb-1 rounded size"
+            (click)="addFilter('size', size)"
+          >
+            <i>{{ size }}</i>
+          </div>
+          }
+        </div>
+      </ng-container>
+      }
+    </mat-expansion-panel>
+  </mat-accordion>
+  } }

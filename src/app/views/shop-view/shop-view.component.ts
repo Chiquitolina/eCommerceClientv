@@ -7,21 +7,20 @@ import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/Products';
 import { ACCORDION_FILTERS, AccordionFilter } from '../../common/constants';
 import { PRODUCT_SIZES } from '../../common/constants';
+import { FiltersService } from '../../filters.service';
+import { FilterState } from '../../models/FiltersState';
 
-import { MatAccordion } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
-import { SliderModule } from 'primeng/slider';
-
 import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { ProductsService } from '../../services/products/products.service';
 import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
+import { AccordionFiltersComponent } from '../../components/accordion-filters/accordion-filters.component';
 
 @Component({
   selector: 'app-shop-view',
@@ -33,20 +32,17 @@ import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
     ProductCardComponent,
     HttpClientModule,
     MatSidenavModule,
-    MatExpansionModule,
     MatCheckboxModule,
     MatIcon,
-    MatAccordion,
-    SliderModule,
     FormsModule,
     CapitalizePipe,
+    AccordionFiltersComponent,
   ],
   templateUrl: './shop-view.component.html',
   styleUrl: './shop-view.component.scss',
   providers: [ProductsService],
 })
 export class ShopViewComponent {
-  accordion = ViewChild(MatAccordion);
   productSer = inject(ProductsService);
   route = inject(ActivatedRoute);
 
@@ -54,9 +50,9 @@ export class ShopViewComponent {
 
   filtersState: string = 'Hide';
   filtersApplied: any = [];
+  filters!: any;
 
   rangeValues: number[] = [];
-  priceSliderState : boolean = false;
   sizes: any[] = [];
 
   accordionFilters: AccordionFilter[] = ACCORDION_FILTERS;
@@ -69,12 +65,31 @@ export class ShopViewComponent {
 
   category: string | null = null;
   subcategory: string | null = null;
+  discount?: number | null;
+  size?: number | null;
+  priceMin?: number;
+  priceMax?: number;
 
   ngOnInit() {
     // Suscribirse a los parámetros de la ruta y cargar productos cuando cambien
     this.route.params.subscribe((params) => {
       this.category = params['category'];
       this.subcategory = params['subcategory'];
+      this.loadProducts();
+    });
+
+    // Obtener query parameters
+    this.route.queryParams.subscribe((queryParams) => {
+      this.discount = queryParams['discount']
+        ? Number(queryParams['discount'])
+        : null;
+      this.size = queryParams['size'] ? Number(queryParams['size']) : null;
+      this.priceMin = queryParams['price_min']
+        ? Number(queryParams['price_min'])
+        : 0;
+      this.priceMax = queryParams['price_max']
+        ? Number(queryParams['price_max'])
+        : Infinity;
       this.loadProducts();
     });
   }
@@ -90,7 +105,7 @@ export class ShopViewComponent {
         this.products = data;
         console.log('Productos cargados:', data);
 
-        this.rangeValues = [0, this.getMaxProductPrice()]
+        this.rangeValues = [0, this.getMaxProductPrice()];
 
         this.subcategory === 'calzado'
           ? (this.sizes = PRODUCT_SIZES.Calzados)
@@ -104,36 +119,13 @@ export class ShopViewComponent {
     });
   }
 
-  addOrRemoveSizeFromFiltersApplied(size: string | number): void {
-    if (this.filtersApplied.includes(size)) {
-      this.filtersApplied = this.filtersApplied.filter(
-        (element: string | number) => element !== size
-      );
-    } else {
-      this.filtersApplied.push(size);
-    }
-  }
-
-  onCheckboxChange(filter: string | number, event: MatCheckboxChange): void {
-    if (!event.checked) {
-      this.filtersApplied = this.filtersApplied.filter(
-        (element: string | number) => element !== filter
-      );
-    }
-  }
-
-  managePriceSliderState(event: MatCheckboxChange) {
-    this.priceSliderState = !this.priceSliderState
-  }
-
   getMaxProductPrice() {
     if (this.products.length == 0) {
       return 0;
     }
-    
+
     return this.products.reduce((prev, current) => {
-      return (prev.price > current.price) ? prev : current;
+      return prev.price > current.price ? prev : current;
     }).price;
   }
-
 }

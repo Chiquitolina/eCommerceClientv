@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="w-50 mt-3 d-flex border border-white rounded">
+      <button class="d-flex align-items-center" color="basic" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>Productos</span>
+        </button>
+        <button mat-menu-item>
+          <span>Ventas</span>
+        </button>
+      </mat-menu>
+      
+      <h2 class="">Panel de administración</h2>
+      </div>
+    <table class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="border">
+        <tr *ngFor="let product of productos; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            {{ product.name }}
+          </td>
+          <td>{{ product.price }}</td>
+          <td class="d-flex justify-content-around align-items-center flex-wrap">
+            <button color="primary" mat-raised-button [disabled]="product.name == ''">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button color="warn" mat-raised-button [disabled]="product.name == ''">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="m-4 bg-dark text-white" mat-raised-button>Añadir Producto</button>
+  </div>
+  
