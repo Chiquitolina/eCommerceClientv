@@ -66,7 +66,6 @@ export class AppComponent {
     // Nos suscribimos al observable del carrito
     this.cartSubscription = this.cartSer.cart$.subscribe(cart => {
       this.currentCart = cart;
-      console.log('Carrito actualizado:', this.currentCart);
     });
   }
 
@@ -86,7 +85,6 @@ export class AppComponent {
 
   getCurrentCart(): void {
      this.currentCart = this.cartSer.getCartValue();
-    console.log('Valor actual del carrito:', this.currentCart);
   }
 
 }

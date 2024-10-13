@@ -45,14 +45,9 @@ export class AccordionFiltersComponent {
   ngOnInit() {
     this.filterSer.getFilters().subscribe((filters: FilterState) => {
       this.filters = Object.entries(filters).map(([key, value]) => ({ key, value }));
-      console.log('Filtros actualizados:', this.filters);
     });
   }
 
-  // Cada vez que cambien los filtros, emites los nuevos valores
-  onFilterChange() {
-    this.filtersChanged.emit(this.selectedFilters);
-  }
 
   addFilter(category: keyof FilterState, filter: any) {
     const currentFilters = this.filterSer.getCurrentFilters(); 
@@ -64,6 +59,9 @@ export class AccordionFiltersComponent {
       : [...currentCategoryFilters, filter]; // Agrega el filtro si no está
   
     this.filterSer.updateFilters({ [category]: updatedCategoryFilters });
+
+    this.filtersChanged.emit(this.selectedFilters);
+
   }
 
   managePriceSliderState(event: MatCheckboxChange) {

@@ -18,7 +18,6 @@ export class CartItemsComponent {
   ngOnInit() {
     this.cartSubscription = this.cartServ.cart$.subscribe(cart => {
       this.currentCart = cart;
-      console.log('Carrito actualizado:', this.currentCart);
     });
   }
 

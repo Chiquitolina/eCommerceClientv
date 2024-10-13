@@ -44,7 +44,7 @@
       <div class="d-flex align-items-center justify-content-around resp-bar">
         <div>
           <i
-            ><h4>{{ this.category }}/{{ this.subcategory }}</h4></i
+            ><h4>{{ this.category | capitalize }}/{{ this.subcategory | capitalize }}</h4></i
           >
         </div>
         <div class="d-flex" (click)="drawerr.toggle()" style="z-index: 9">

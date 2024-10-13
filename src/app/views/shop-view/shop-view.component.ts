@@ -57,8 +57,8 @@ export class ShopViewComponent {
     this.filtersState = opened ? 'Hide' : 'Show';
   }
 
-  category: string | null = null;
-  subcategory: string | null = null;
+  category!: string;
+  subcategory!: string;
   discount?: number | null;
   size?: number | null;
   priceMin?: number;
@@ -91,13 +91,10 @@ export class ShopViewComponent {
   loadProducts(): void {
     this.products = [];
 
-    console.log('Cargando productos para:', this.category, this.subcategory);
-
     // Solicitar productos usando el servicio
     this.productSer.getProducts(this.category, this.subcategory).subscribe({
       next: (data) => {
         this.products = data;
-        console.log('Productos cargados:', data);
 
         this.rangeValues = [0, this.getMaxProductPrice()];
 
@@ -105,7 +102,6 @@ export class ShopViewComponent {
           ? (this.sizes = PRODUCT_SIZES.Calzados)
           : (this.sizes = PRODUCT_SIZES.Ropa);
 
-        console.log(this.sizes);
       },
       error: (error) => {
         console.error('Error al cargar productos:', error);

@@ -12,7 +12,7 @@ export class CategoriesService {
 
   getCategories() {
     return this.http.get<any[]>(`${this.baseUrl}/get-categories`).pipe(
-      tap((data: any) => console.log(data)),
+      tap((data: any) => {}),
       catchError((error) => {
         console.error('Error updating product:', error);
         return throwError(() => error);

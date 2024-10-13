@@ -36,7 +36,7 @@ export class ProductsService {
     }
   
     return this.http.get<Product[]>(url).pipe(
-      tap((products) => console.log(products)),
+      tap((products) => {}),
       catchError((error) => {
         console.error('Error fetching products:', error);
         return throwError(() => error);
@@ -46,7 +46,7 @@ export class ProductsService {
 
   public editProduct(product: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/edit-product`, product).pipe(
-      tap((response) => console.log(response)),
+      tap((response) => {}),
       catchError((error) => {
         console.error('Error updating product:', error);
         return throwError(() => error);
