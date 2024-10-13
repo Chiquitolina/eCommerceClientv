@@ -1,10 +1,10 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatAccordion } from '@angular/material/expansion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { FiltersService } from '../../filters.service';
+import { FiltersService } from '../../services/filters/filters.service';
 
 import { FilterState } from '../../models/FiltersState';
 import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
@@ -25,15 +25,22 @@ export class AccordionFiltersComponent {
 
   @Input() sizesReceived?: any[];
   @Input() range!: number[];
+  @Output() filtersChanged = new EventEmitter<any>();
 
   filterSer = inject(FiltersService);
   filters!: any;
-  filtersApplied: any = [];
 
   sizes: any[] = [];
   priceSliderState: boolean = false;
 
   accordionFilters: AccordionFilter[] = ACCORDION_FILTERS;
+
+  selectedFilters = {
+    discount: null,
+    size: null,
+    priceMin: 0,
+    priceMax: Infinity,
+  };
 
   ngOnInit() {
     this.filterSer.getFilters().subscribe((filters: FilterState) => {
@@ -42,41 +49,25 @@ export class AccordionFiltersComponent {
     });
   }
 
-  addFilter(category: string, filter: any) {
-    // Obtén el valor actual de los filtros
-    const currentFilters = this.filterSer.getCurrentFilters(); // Llama al nuevo método
-    const currentSizeFilters = currentFilters.size || []; // Accede al array de tamaños
-  
-    // Verifica si el filtro ya está, si está lo quita, si no lo agrega
-    const updatedSizeFilters = currentSizeFilters.includes(filter)
-      ? currentSizeFilters.filter((size: number) => size !== filter) // Elimina el filtro si ya está
-      : [...currentSizeFilters, filter]; // Agrega el filtro si no está
-  
-    // Actualiza el estado con el nuevo array de tamaños
-    this.filterSer.updateFilters({ [category]: updatedSizeFilters });
+  // Cada vez que cambien los filtros, emites los nuevos valores
+  onFilterChange() {
+    this.filtersChanged.emit(this.selectedFilters);
   }
 
-  addOrRemoveSizeFromFiltersApplied(size: string | number): void {
-    if (this.filtersApplied.includes(size)) {
-      this.filtersApplied = this.filtersApplied.filter(
-        (element: string | number) => element !== size
-      );
-    } else {
-      this.filtersApplied.push(size);
-    }
-  }
-
-  onCheckboxChange(filter: string | number, event: MatCheckboxChange): void {
-    if (!event.checked) {
-      this.filtersApplied = this.filtersApplied.filter(
-        (element: string | number) => element !== filter
-      );
-    }
+  addFilter(category: keyof FilterState, filter: any) {
+    const currentFilters = this.filterSer.getCurrentFilters(); 
+    
+    const currentCategoryFilters = currentFilters[category] || []; 
+    
+    const updatedCategoryFilters = currentCategoryFilters.includes(filter)
+      ? currentCategoryFilters.filter((item: any) => item !== filter) // Elimina el filtro si ya está
+      : [...currentCategoryFilters, filter]; // Agrega el filtro si no está
+  
+    this.filterSer.updateFilters({ [category]: updatedCategoryFilters });
   }
 
   managePriceSliderState(event: MatCheckboxChange) {
     this.priceSliderState = !this.priceSliderState;
   }
-
 
 }

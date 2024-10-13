@@ -5,13 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { Product } from '../../models/Products';
-import { ACCORDION_FILTERS, AccordionFilter } from '../../common/constants';
 import { PRODUCT_SIZES } from '../../common/constants';
-import { FiltersService } from '../../filters.service';
 import { FilterState } from '../../models/FiltersState';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -21,6 +18,7 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 import { ProductsService } from '../../services/products/products.service';
 import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 import { AccordionFiltersComponent } from '../../components/accordion-filters/accordion-filters.component';
+import { FiltersService } from '../../services/filters/filters.service';
 
 @Component({
   selector: 'app-shop-view',
@@ -32,7 +30,6 @@ import { AccordionFiltersComponent } from '../../components/accordion-filters/ac
     ProductCardComponent,
     HttpClientModule,
     MatSidenavModule,
-    MatCheckboxModule,
     MatIcon,
     FormsModule,
     CapitalizePipe,
@@ -44,18 +41,15 @@ import { AccordionFiltersComponent } from '../../components/accordion-filters/ac
 })
 export class ShopViewComponent {
   productSer = inject(ProductsService);
+  filterSer = inject(FiltersService)
   route = inject(ActivatedRoute);
 
   products: Product[] = [];
 
   filtersState: string = 'Hide';
-  filtersApplied: any = [];
-  filters!: any;
 
   rangeValues: number[] = [];
   sizes: any[] = [];
-
-  accordionFilters: AccordionFilter[] = ACCORDION_FILTERS;
 
   sidebarVisible = false;
 

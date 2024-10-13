@@ -12,8 +12,12 @@ a {
   object-fit: contain; /* Escala la imagen manteniendo la relación de aspecto y cubriendo el área disponible */
 }
 
-.size {
+a, .size {
     cursor: pointer;
+}
+
+.icon-close {
+  cursor: pointer;
 }
 
 .titulo {

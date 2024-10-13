@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { FilterState } from './models/FiltersState';
+import { FilterState } from '../../models/FiltersState';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FiltersService {
-
   // Inicializa el BehaviorSubject con el estado inicial
-  private filters = new BehaviorSubject<FilterState>({
+  private initialFilters: FilterState = {
     sale: [],
     size: [],
     price: [],
+  };
+
+  // Inicializa el BehaviorSubject con el estado inicial
+  private filters = new BehaviorSubject<FilterState>({
+    ...this.initialFilters,
   });
 
   // Retorna el observable de los filtros
@@ -25,5 +29,9 @@ export class FiltersService {
 
   updateFilters(newFilters: Partial<FilterState>): void {
     this.filters.next({ ...this.filters.getValue(), ...newFilters });
+  }
+  
+  cleanFilters(): void {
+    this.filters.next({ ...this.initialFilters });
   }
 }

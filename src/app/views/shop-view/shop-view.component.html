@@ -1,13 +1,14 @@
 <mat-drawer #drawerr class="drawer-resp" mode="side" style="z-index: 1000">
   <div class="w-100 d-flex justify-content-end" (click)="drawerr.toggle()">
-    <mat-icon class="m-2">close</mat-icon>
+    <mat-icon class="m-2 mt-4 icon-close">close</mat-icon>
   </div>
+  <hr>
   <div class="row w-100">
     <div
       class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-3 mb-3"
     >
       <h1>Filtros</h1>
-      <a href=""><p>Clean Filters</p></a>
+      <a class="clean" (click)="this.filterSer.cleanFilters()"><p>Clean Filters</p></a>
     </div>
   </div>
   <app-accordion-filters [sizesReceived]="sizes" [range]="rangeValues"></app-accordion-filters>
@@ -20,12 +21,16 @@
     opened
     (openedChange)="onDrawerToggle($event)"
   >
+  <div class="w-100 d-flex justify-content-end" (click)="drawer.toggle()">
+    <mat-icon class="m-2 mt-4 icon-close">close</mat-icon>
+  </div>
+  <hr>
     <div class="row w-100">
       <div
         class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-1"
       >
         <h1>Filtros</h1>
-        <a href=""><p>Clean Filters</p></a>
+        <a class="clean" (click)="this.filterSer.cleanFilters()"><p>Clean Filters</p></a>
       </div>
     </div>
 
