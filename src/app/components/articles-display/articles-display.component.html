@@ -5,14 +5,15 @@
     [numVisible]="3" 
     [numScroll]="1"
     [responsiveOptions]="responsiveOptions">
-        <ng-template let-product pTemplate="item">
+        <ng-template let-product let-i="index" pTemplate="item">
             <div
             class="row card-container w-100 d-flex justify-content-around mt-4 mb-4"
           >
             <div
               class="col-xl-12 col-md-8 col-sm-10 text-center m-2 text-dark"
             >
-            <app-product-card 
+            <app-product-card
+                [delay]="i * 0.5"
                 [productSend]="product"
                 [isLoading]="isLoading"
               ></app-product-card>

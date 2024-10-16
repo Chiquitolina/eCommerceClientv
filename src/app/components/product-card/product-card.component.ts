@@ -18,6 +18,7 @@ export class ProductCardComponent implements OnInit {
 
   @Input() productSend?: any; // Recibe el producto del componente padre
   @Input() isLoading: boolean = true // Recibe el producto del componente padre
+  @Input() delay: number = 0;
 
   public dialog = inject(MatDialog)
 

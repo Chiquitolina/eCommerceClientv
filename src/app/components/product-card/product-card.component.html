@@ -1,8 +1,16 @@
+<p-skeleton
+  *ngIf="isLoading"
+  shape="rectangle"
+  width="100%"
+  height="28rem"
+></p-skeleton>
 
-
-<p-skeleton *ngIf="isLoading" shape="rectangle" width="100%" height="28rem"></p-skeleton>
-
-<mat-card *ngIf="!isLoading" style="height: auto; min-height: 28rem">
+<mat-card
+  class="product-card"
+  *ngIf="!isLoading"
+  style="height: auto; min-height: 28rem"
+  [ngStyle]="{ 'animation-delay': delay + 's' }"
+>
   <div class="d-flex justify-content-center">
     <img
       class="card-img-top"
