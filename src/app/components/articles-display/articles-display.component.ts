@@ -22,7 +22,7 @@ export class ArticlesDisplayComponent {
   responsiveOptions: any[] | undefined;
 
   products: any[] = [];
-  isLoading: boolean = true
+  isLoading!: boolean;
 
   ngOnInit(): void {
     this.loadProducts(); // Llama a la función loadProducts() cuando se inicialice el componente
@@ -47,10 +47,12 @@ export class ArticlesDisplayComponent {
   }
   
   loadProducts() {
+    this.isLoading = true;
+    
     this._prodSer.getProducts(null, null).subscribe({
       next: (products) => {
         this.products = products;
-        this.isLoading = false;
+        this.isLoading = true ;
         console.log('Products loaded successfully:', products);
       },
       error: (error) => {
@@ -61,6 +63,11 @@ export class ArticlesDisplayComponent {
         console.log('Product loading completed');
       }
     });
+
+      // Simula una petición de datos con un retardo
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000); // Simula una carga de 3 segundos
   }
 
 }

@@ -23,21 +23,20 @@ mat-card {
   
   .card-img-top {
     width: 100%;
-    height: 14rem;
+    height: 18rem;
     border-radius: 1rem;
     border: 2px solid white;
     cursor: pointer;
     margin: 1rem;
   }
   
-  .ratio {
-    position: absolute;
-    right: 0rem;
-    top: -0.5rem;
-  }
-  
   .title-product {
     font-size: medium;
+  }
+
+  .discount {
+    color: green;
+    font-weight: 600;
   }
   
   button {

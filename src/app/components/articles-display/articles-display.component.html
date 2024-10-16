@@ -1,3 +1,5 @@
+  
+
   <p-carousel
     [value]="products" 
     [numVisible]="3" 
@@ -8,10 +10,11 @@
             class="row card-container w-100 d-flex justify-content-around mt-4 mb-4"
           >
             <div
-              class="col-xl-10 col-md-8 col-sm-10 text-center m-2 text-dark"
+              class="col-xl-12 col-md-8 col-sm-10 text-center m-2 text-dark"
             >
-              <app-product-card 
+            <app-product-card 
                 [productSend]="product"
+                [isLoading]="isLoading"
               ></app-product-card>
             </div>
           </div>

@@ -1,17 +1,21 @@
 <mat-drawer #drawerr class="drawer-resp" mode="side" style="z-index: 1000">
-  <div class="w-100 d-flex justify-content-end" (click)="drawerr.toggle()">
-    <mat-icon class="m-2 mt-4 icon-close">close</mat-icon>
+  <div
+    class="w-100 d-flex justify-content-between mt-2 mb-2 align-items-center"
+    (click)="drawerr.toggle()"
+  >
+    <h1>Filtros</h1>
+    <mat-icon class="m-2 icon-close">close</mat-icon>
   </div>
-  <hr>
-  <div class="row w-100">
-    <div
-      class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-3 mb-3"
+  <app-accordion-filters
+    [sizesReceived]="sizes"
+    [range]="rangeValues"
+    (filtersChanged)="onFiltersChanged($event)"
+  ></app-accordion-filters>
+  <div class="d-flex w-100 justify-content-end">
+    <a class="clean m-2" (click)="this.cleanFilters()"
+      ><p>Limpiar filtros</p></a
     >
-      <h1>Filtros</h1>
-      <a class="clean" (click)="this.filterSer.cleanFilters()"><p>Clean Filters</p></a>
-    </div>
   </div>
-  <app-accordion-filters [sizesReceived]="sizes" [range]="rangeValues"></app-accordion-filters>
 </mat-drawer>
 <mat-drawer-container autosize>
   <mat-drawer
@@ -21,20 +25,24 @@
     opened
     (openedChange)="onDrawerToggle($event)"
   >
-  <div class="w-100 d-flex justify-content-end" (click)="drawer.toggle()">
-    <mat-icon class="m-2 mt-4 icon-close">close</mat-icon>
-  </div>
-  <hr>
-    <div class="row w-100">
-      <div
-        class="col-xl-2 d-flex justify-content-between align-items-center w-100 mt-1"
-      >
-        <h1>Filtros</h1>
-        <a class="clean" (click)="this.filterSer.cleanFilters()"><p>Clean Filters</p></a>
-      </div>
+    <div
+      class="w-100 d-flex justify-content-between mt-2 mb-2 align-items-center"
+      (click)="drawer.toggle()"
+    >
+      <h1>Filtros</h1>
+      <mat-icon class="m-2 icon-close">close</mat-icon>
     </div>
 
-    <app-accordion-filters [sizesReceived]="sizes" [range]="rangeValues"></app-accordion-filters>
+    <app-accordion-filters
+      [sizesReceived]="sizes"
+      [range]="rangeValues"
+      (filtersChanged)="onFiltersChanged($event)"
+    ></app-accordion-filters>
+    <div class="d-flex w-100 justify-content-end">
+      <a class="clean m-2" (click)="this.cleanFilters()"
+        ><p>Limpiar filtros</p></a
+      >
+    </div>
   </mat-drawer>
 
   <mat-drawer-content>
@@ -44,7 +52,11 @@
       <div class="d-flex align-items-center justify-content-around resp-bar">
         <div>
           <i
-            ><h4>{{ this.category | capitalize }}/{{ this.subcategory | capitalize }}</h4></i
+            ><h5>
+              {{ this.category | capitalize }}/{{
+                this.subcategory | capitalize | replaceChar : "-" : " "
+              }}
+            </h5></i
           >
         </div>
         <div class="d-flex" (click)="drawerr.toggle()" style="z-index: 9">
@@ -52,13 +64,13 @@
         </div>
       </div>
       <div class="w-100 d-flex flex-column justify-content-end align-items-end">
-        <h2 class="titulo mb-4">Store</h2>
+        <h2 class="titulo mb-4">Shop</h2>
         <div class="d-flex justify-content-between align-items-center w-100">
           <i>Productos encontrados: {{ products.length }}</i>
           <div class="d-flex filterStateAction">
             <mat-icon class="m-1">filter_list</mat-icon>
             <h4 mat-icon-button (click)="drawer.toggle()">
-              {{ filtersState }} filters
+              {{ filtersState }} filtros
             </h4>
           </div>
         </div>
@@ -73,8 +85,9 @@
         <div class="row d-flex justify-content-center">
           @for (product of products; track product) {
           <app-product-card
-            class="col-xl-3 col-md-5 col-8 mb-2 text-center"
+            class="col-xl-4 col-md-5 col-8 mb-2 text-center"
             [productSend]="product"
+            [isLoading]="isLoading"
           ></app-product-card>
           }
         </div>

@@ -16,7 +16,12 @@
           }
         </div>
         <div class="col col-xl-10 col-md-10 col-sm-12 borders">
-          <img class="w-100 rounded mb-2" src="{{ selectedImage }}" alt="" />
+          <lib-ngx-image-zoom
+            [thumbImage]="selectedImage"
+            [fullImage]="selectedImage"
+            [magnification]="1"
+            [zoomMode]="'hover'"
+          ></lib-ngx-image-zoom>
         </div>
       </div>
     </div>
@@ -27,9 +32,32 @@
       <div class="row">
         <h4>{{ product?.name }}</h4>
         <p class="text-secondary">{{ product?.shortdescription }}</p>
-        <h4>
-          <b>${{ product?.price }}</b>
-        </h4>
+        <h6 class="m-1">
+          <b *ngIf="product.discount > 0; else noDiscount">
+            <span>
+              ${{
+                (product.price | discountPrice : product.discount)
+                  .discountedPrice | number
+              }}
+            </span>
+            <span
+              class="text-secondary fw-light"
+              style="text-decoration: line-through"
+            >
+              ${{ product.price | number }}
+            </span>
+            @if (product.discount !== "0") {
+            <i
+              ><span class="card-text discount"
+                >{{ product.discount }}% de descuento</span
+              ></i
+            >
+            }
+          </b>
+          <ng-template #noDiscount>
+            <b>${{ product.price | number }}</b>
+          </ng-template>
+        </h6>
         <div class="d-flex flex-column flex-wrap mb- mt-3">
           <div class="d-flex justify-content-between" style="font-weight: 300">
             <b><span>Seleccionar talle:</span></b>
@@ -52,6 +80,7 @@
               mat-raised-button
               class="btn btn-primary w-100 mt-4 mb-2 p-3 d-flex align-items-center justify-content-center bg-dark border-0"
               (click)="addProduct({product, cantidad: 1, priceconjunto: 0}, product.name)"
+              [disabled]="!selectedSize"
             >
               <b>Añadir al carrito</b>
               <mat-icon>add_shopping_cart</mat-icon>
@@ -73,7 +102,9 @@
             <mat-expansion-panel class="text-black bg-light">
               <mat-expansion-panel-header>
                 <mat-panel-title class="text-black">
-                  <b class="acordiontitle"><i>{{ item.key }}</i></b>
+                  <b class="acordiontitle"
+                    ><i>{{ item.key }}</i></b
+                  >
                 </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
@@ -82,11 +113,11 @@
               </ng-container>
               @if (item.key === 'Compartir') {
               <ng-container>
-                <img width="40" src="/assets/whatsapp.png" alt="dsadas">
-                <img width="40" src="/assets/facebook.png" alt="dsadas">
-                <img width="40" src="/assets/twitter.png" alt="dsadas">
+                <img width="40" src="/assets/whatsapp.png" alt="dsadas" />
+                <img width="40" src="/assets/facebook.png" alt="dsadas" />
+                <img width="40" src="/assets/twitter.png" alt="dsadas" />
               </ng-container>
-            }
+              }
             </mat-expansion-panel>
           </mat-accordion>
         </div>

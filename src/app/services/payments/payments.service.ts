@@ -11,6 +11,6 @@ export class PaymentsService {
 
   public createOrder(params: any): Observable<any> {
     console.log(params)
-    return this._http.post('http://localhost:3000/create-order', params);
+    return this._http.post('https://ecommerce-0028.onrender.com/create-order', params);
   }
 }

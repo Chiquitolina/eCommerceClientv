@@ -33,7 +33,7 @@
         <b>{{ item.name }}</b>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    @if (item.name === 'Sale') {
+    @if (item.name === 'Descuentos') {
     <ng-container>
       <div class="row w-100 d-flex flex-wrap">
         @for (discount of item.discounts; track discount) {
@@ -66,7 +66,7 @@
         }
       </ng-container>
   } -->
-    @if (item.name === 'Prices') {
+    @if (item.name === 'Precio') {
     <ng-container class="d-flex">
       <mat-checkbox
         [disabled]="true"
@@ -89,7 +89,7 @@
         >
       </div>
     </ng-container>
-    } @if (item.name === 'Size') {
+    } @if (item.name === 'Talles') {
     <ng-container>
       <div class="row w-100 d-flex flex-wrap">
         @for (size of sizesReceived; track size) {

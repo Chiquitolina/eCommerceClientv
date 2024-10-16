@@ -2,6 +2,11 @@ button {
   border-radius: 3rem;
 }
 
+::ng-deep .ngxImageZoomContainer > img{
+  max-height: 32rem;
+  max-height: 32rem;
+}
+
 h1 {
   font-weight: bold;
 }
@@ -37,6 +42,11 @@ a {
 .selected-size {
   background-color: black;
   color: white;
+}
+
+.discount {
+  margin-left: 0.5rem;
+  color: green;
 }
 
 .acordiontitle {

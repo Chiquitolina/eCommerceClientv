@@ -13,7 +13,7 @@ interface AuthResponse {
 
 export class AuthService {
 
-  private authUrl = 'http://localhost:3000/admin/login'
+  private authUrl = 'https://ecommerce-0028.onrender.com/admin/login'
 
   private _http = inject(HttpClient)
 

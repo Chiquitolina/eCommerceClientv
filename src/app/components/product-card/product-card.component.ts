@@ -1,22 +1,29 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SizesAvailableComponent } from '../sizes-available/sizes-available.component';
 import { MatCard } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
+import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
+import { CommonModule } from '@angular/common';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [MatCard, RouterLink
-  ],
+  imports: [MatCard, RouterLink, DiscountPricePipe,CommonModule, SkeletonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
 
   @Input() productSend?: any; // Recibe el producto del componente padre
+  @Input() isLoading: boolean = true // Recibe el producto del componente padre
 
   public dialog = inject(MatDialog)
+
+  ngOnInit() {
+    console.log(this.isLoading)
+  }
 
   openDialog(
     enterAnimationDuration: string,

@@ -18,6 +18,11 @@ a, .size {
 
 .icon-close {
   cursor: pointer;
+  margin-right: 1rem;
+}
+
+.clean {
+  margin-right: 1rem;
 }
 
 .titulo {
@@ -83,6 +88,9 @@ mat-slider {
 .resp-bar {
   height: 4rem;
   visibility: hidden;
+  position: fixed;
+  top: 0;
+  display: none;
 }
 
 .drawer-resp {
@@ -98,6 +106,8 @@ display: none;
 
 .resp-bar {
   visibility: visible;
+  position:static;
+  width: 100%;
 }
 
 .drawer-resp {

@@ -7,7 +7,8 @@
         <app-cart-items></app-cart-items>
         <div>
           <button
-          mat-raised-button
+            type="button"
+            mat-raised-button
             class="m-3 w-25 bg-dark text-white"
             (click)="this.dialogRef.close()"
             mat-button
@@ -15,7 +16,7 @@
             Volver
           </button>
           <button
-          mat-raised-button
+            mat-raised-button
             class="m-3 w-25 bg-dark text-white"
             mat-button
             matStepperNext
@@ -35,7 +36,7 @@
         </div>
         <div class="w-100 d-flex">
           <button
-             mat-raised-button
+            mat-raised-button
             class="m-3 w-50 bg-dark text-white"
             color="accent"
             (click)="abrirPago()"
@@ -44,8 +45,12 @@
             Finalizar compra
           </button>
 
-          <button mat-raised-button
-          class="m-3 w-25 bg-dark text-white" mat-button matStepperPrevious>
+          <button
+            mat-raised-button
+            class="m-3 w-25 bg-dark text-white"
+            mat-button
+            matStepperPrevious
+          >
             Volver
           </button>
         </div>
