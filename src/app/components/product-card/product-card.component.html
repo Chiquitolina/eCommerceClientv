@@ -6,6 +6,9 @@
 ></p-skeleton>
 
 <mat-card
+  pDraggable
+  (onDragStart)="dragStart()" 
+  (onDragEnd)="dragEnd()"
   class="product-card"
   *ngIf="!isLoading"
   style="height: auto; min-height: 28rem"

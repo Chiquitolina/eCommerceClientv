@@ -22,23 +22,38 @@ import { MatCardModule } from '@angular/material/card'; // Si usas tarjetas
 import { MatDividerModule } from '@angular/material/divider'; // Si usas divisores
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { Subscription } from 'rxjs';
+import { DragDropService } from './services/dragdrop/drag-drop.service';
+import { DragDropModule } from 'primeng/dragdrop';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, CartItemsComponent, FooterComponent, MatDividerModule, MatSidenavModule, MatCardModule, MatIconModule, MatButtonModule, MatListModule, MatToolbarModule],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    CartItemsComponent,
+    FooterComponent,
+    MatDividerModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatToolbarModule,
+    DragDropModule
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
   title = 'marketplace';
 
   @ViewChild('drawer') drawer!: MatDrawer;
 
-  public cartSer = inject(CartService)
-  dialog = inject(MatDialog)
+  public cartSer = inject(CartService);
+  dialog = inject(MatDialog);
+  dragDropService = inject(DragDropService)
 
-  currentCart! : Cart;
+  currentCart!: Cart;
   private cartSubscription!: Subscription;
 
   public checkoutEvent(side: any): void {
@@ -51,9 +66,13 @@ export class AppComponent {
     this.drawer.opened ? this.drawer.toggle() : 0;
   }
 
-  public removeItem(itemcart: CartItem, drawer: MatDrawer, productname:string) {
+  public removeItem(
+    itemcart: CartItem,
+    drawer: MatDrawer,
+    productname: string
+  ) {
     this.cartSer.removeItemFromCart(itemcart);
-   /* this.alertsServ.showAlert(
+    /* this.alertsServ.showAlert(
       `¡Producto ${productname} removido del carrito correctamente!`,
       'Cerrar',
       4000,
@@ -64,7 +83,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     // Nos suscribimos al observable del carrito
-    this.cartSubscription = this.cartSer.cart$.subscribe(cart => {
+    this.cartSubscription = this.cartSer.cart$.subscribe((cart) => {
       this.currentCart = cart;
     });
   }
@@ -81,10 +100,29 @@ export class AppComponent {
     });
   }
 
-  
-
   getCurrentCart(): void {
-     this.currentCart = this.cartSer.getCartValue();
+    this.currentCart = this.cartSer.getCartValue();
   }
 
+  addProduct(cartItem: CartItem, productname: string) {
+    this.cartSer.addItemToCart(cartItem);
+   /* this._alertSer.showAlert(
+      `¡Producto ${productname} añadido al carrito correctamente!`,
+      'Cerrar',
+      3000,
+      'snackbar-success',
+      productname
+    );*/
+  }
+
+  onDrop() {
+    const draggedItem = this.dragDropService.getDraggedItem();
+    let product = draggedItem;
+    if (draggedItem) {
+      console.log(draggedItem)
+      this.addProduct({product, cantidad: 1, priceconjunto: 0}, draggedItem.name)
+      console.log('Producto agregado al carrito:', draggedItem);
+    }
+    this.dragDropService.clearDraggedItem();
+  }
 }

@@ -6,11 +6,12 @@ import { RouterLink } from '@angular/router';
 import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
-
+import { DragDropModule } from 'primeng/dragdrop';
+import { DragDropService } from '../../services/dragdrop/drag-drop.service';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [MatCard, RouterLink, DiscountPricePipe,CommonModule, SkeletonModule],
+  imports: [MatCard, RouterLink, DiscountPricePipe, CommonModule, SkeletonModule, DragDropModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
@@ -21,6 +22,7 @@ export class ProductCardComponent implements OnInit {
   @Input() delay: number = 0;
 
   public dialog = inject(MatDialog)
+  dragDropService = inject(DragDropService)
 
   ngOnInit() {
     console.log(this.isLoading)
@@ -49,6 +51,14 @@ export class ProductCardComponent implements OnInit {
         console.log('Diálogo cerrado sin edición');
       }
     });
+  }
+
+  dragStart() {
+    this.dragDropService.setDraggedItem(this.productSend);
+  }
+
+  dragEnd() {
+    this.dragDropService.clearDraggedItem();
   }
 
 }

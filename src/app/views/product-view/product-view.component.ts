@@ -33,13 +33,6 @@ export class ProductViewComponent {
 
   addProduct(cartItem: CartItem, productname: string) {
     this._cartSer.addItemToCart(cartItem);
-   /* this._alertSer.showAlert(
-      `¡Producto ${productname} añadido al carrito correctamente!`,
-      'Cerrar',
-      3000,
-      'snackbar-success',
-      productname
-    );*/
   }
 
   ngOnInit(): void {

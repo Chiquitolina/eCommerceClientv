@@ -12,24 +12,28 @@
   >
     <mat-icon>remove_shopping_cart</mat-icon>
   </button>
-  <button
-    (click)="this.drawer.toggle()"
-    mat-fab
-    color="accent"
-    [disabled]="this.currentCart.items.length == 0"
-  >
+  <button (click)="this.drawer.toggle()" mat-fab color="accent">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 </div>
 <mat-drawer-container autosize>
-  <mat-drawer #drawer mode="side" position="end">
+  <mat-drawer #drawer mode="side" position="end" pDroppable (onDrop)="onDrop()">
     <mat-nav-list>
       <div class="d-flex align-items-center m-3 border-bottom">
         <mat-icon>shopping_cart</mat-icon>
-        <h2 class="m-3">Mi carrito:</h2>
+        <h2 class="m-3 mt-1">Mi carrito</h2>
       </div>
 
-        <app-cart-items></app-cart-items>
+      @if (this.currentCart.totalItems === 0) {
+      <div class="text-center">
+        <h3 class="empty-cart-text">Tu carrito está vacío.</h3>
+        <p class="text-secondary">Te ayudamos a buscar lo que encontrás.</p>
+        <a href="">Ver productos.</a>
+      </div>
+      }
+
+      <app-cart-items></app-cart-items>
+      @if (this.currentCart.totalItems > 0) {
       <div class="d-flex align-items-center w-100 justify-content-around mt-3">
         <div class="">
           <h5 class="">Precio final:</h5>
@@ -44,13 +48,14 @@
           Checkout
         </button>
       </div>
+      }
     </mat-nav-list>
   </mat-drawer>
 
   <mat-drawer-content
-    style="min-height: 100vh; max-width: 100wh; background-color:white"
+    style="min-height: 100vh; max-width: 100wh; background-color: white"
   >
-  <app-header></app-header>
+    <app-header></app-header>
     <router-outlet> </router-outlet>
     <app-footer></app-footer>
   </mat-drawer-content>
