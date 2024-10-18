@@ -24,6 +24,13 @@ import { CartItemsComponent } from './components/cart-items/cart-items.component
 import { Subscription } from 'rxjs';
 import { DragDropService } from './services/dragdrop/drag-drop.service';
 import { DragDropModule } from 'primeng/dragdrop';
+import { FormsModule } from '@angular/forms';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -39,7 +46,14 @@ import { DragDropModule } from 'primeng/dragdrop';
     MatButtonModule,
     MatListModule,
     MatToolbarModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    ButtonModule,
+    InputTextModule,
+    AccordionModule
+
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

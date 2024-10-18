@@ -19,9 +19,11 @@
 <mat-drawer-container autosize>
   <mat-drawer #drawer mode="side" position="end" pDroppable (onDrop)="onDrop()">
     <mat-nav-list>
-      <div class="d-flex align-items-center m-3 border-bottom">
+      <div
+        class="d-flex align-items-center m-3 border-bottom justify-content-center"
+      >
         <mat-icon>shopping_cart</mat-icon>
-        <h2 class="m-3 mt-1">Mi carrito</h2>
+        <h2 class="m-3 mt-1 empty-cart-text">Mi carrito</h2>
       </div>
 
       @if (this.currentCart.totalItems === 0) {
@@ -34,19 +36,49 @@
 
       <app-cart-items></app-cart-items>
       @if (this.currentCart.totalItems > 0) {
-      <div class="d-flex align-items-center w-100 justify-content-around mt-3">
-        <div class="">
-          <h5 class="">Precio final:</h5>
-          <h4 class="">{{ this.currentCart.finalPrice }}</h4>
+      <div class="total w-100">
+        <div class="d-flex justify-content-center mt-3">
+          <div class="input-group w-75">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Código postal"
+              aria-label="Código postal"
+              aria-describedby="button-addon2"
+            />
+            <button
+              mat-raised-button
+              class="btn text-white bg-dark btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Calcular envío
+            </button>
+          </div>
         </div>
-        <button
-          mat-raised-button
-          class="btn bg-dark text-white"
-          color="accent"
-          (click)="checkoutEvent(drawer)"
+        <div
+          class="d-flex flex-column align-items-center w-100 justify-content-around mt-1"
         >
-          Checkout
-        </button>
+          <div
+            class="d-flex flex-column w-75 align-items-center justify-content-between"
+          >
+            <div class="w-100 text-secondary">
+              <a href="" style="font-size: 13px"><b>Ver detalle</b></a>
+            </div>
+            <div class="d-flex w-100 justify-content-between text-black">
+              <h5 class="">TOTAL</h5>
+              <h4 class="">${{ this.currentCart.finalPrice }}</h4>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            class="btn bg-dark text-white w-75"
+            color="accent"
+            (click)="checkoutEvent(drawer)"
+          >
+            Finalizar mi compra
+          </button>
+        </div>
       </div>
       }
     </mat-nav-list>
