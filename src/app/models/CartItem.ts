@@ -1,7 +1,7 @@
-import { Product } from "./Products";
-
+import { Product } from './Products';
+import { SizeQuantity } from './SizeQuantity';
 export interface CartItem {
-    product: Product,
-    cantidad: number,
-    priceconjunto: number
+  product: Product;
+  cantidad: number,
+  sizes: SizeQuantity[];
 }

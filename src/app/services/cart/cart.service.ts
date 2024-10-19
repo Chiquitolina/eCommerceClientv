@@ -7,37 +7,31 @@ import { CartItem } from '../../models/CartItem';
   providedIn: 'root',
 })
 export class CartService {
-  // Creamos un BehaviorSubject para el carrito
+
   private cartSubject = new BehaviorSubject<Cart>({
     items: [],
     finalPrice: 0,
     totalItems: 0,
   });
 
-  // Observable del carrito
   cart$: Observable<Cart> = this.cartSubject.asObservable();
 
-  // Método para agregar un ítem al carrito
-  // Método para agregar un ítem al carrito
   addItemToCart(cartItem: CartItem): void {
     const currentCart = this.cartSubject.value;
 
-    // Verificamos si el ítem ya existe en el carrito
     const foundItem = currentCart.items.find(
       (item) => item.product.name === cartItem.product.name
     );
 
     let updatedItems;
     if (foundItem) {
-      // Si el ítem ya existe, incrementamos la cantidad
       updatedItems = currentCart.items.map((item) =>
         item.product.name === cartItem.product.name
           ? { ...item, cantidad: item.cantidad + 1 }
           : item
       );
     } else {
-      // Si el ítem no existe, lo agregamos con cantidad inicial 1
-      const newItem = { ...cartItem, cantidad: 1 }; // Inicializamos cantidad a 1
+      const newItem = { ...cartItem, cantidad: 1 };
       updatedItems = [...currentCart.items, newItem];
     }
 
