@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart/cart.service';
@@ -12,13 +12,20 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-side-cart',
   standalone: true,
-  imports: [MatListModule, MatIconModule, CartItemsComponent, CheckoutComponent, MatButtonModule],
+  imports: [
+    MatListModule,
+    MatIconModule,
+    CartItemsComponent,
+    CheckoutComponent,
+    MatButtonModule,
+  ],
   templateUrl: './side-cart.component.html',
-  styleUrl: './side-cart.component.scss'
+  styleUrl: './side-cart.component.scss',
 })
 export class SideCartComponent {
+  @Input() isSideCartOpen : boolean = false;
 
-  cartSer = inject(CartService)
+  cartSer = inject(CartService);
   dialog = inject(MatDialog);
 
   currentCart!: Cart;
@@ -30,16 +37,16 @@ export class SideCartComponent {
       this.currentCart = cart;
     });
   }
+ 
 
   getCurrentCart(): void {
     this.currentCart = this.cartSer.getCartValue();
   }
 
   public checkoutEvent(): void {
-   /* side.toggle();*/
+    /* side.toggle();*/
     this.openDialog('0ms', '0ms');
   }
-
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string

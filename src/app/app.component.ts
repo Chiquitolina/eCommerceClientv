@@ -63,12 +63,20 @@ export class AppComponent {
   public cartSer = inject(CartService);
   dragDropService = inject(DragDropService);
 
+  isSideCartOpen: boolean = false;
+
   currentCart!: Cart;
   private cartSubscription!: Subscription;
 
   public cleanCartEvent() {
     this.cartSer.clearCart();
     this.drawer.opened ? this.drawer.toggle() : 0;
+    this.isSideCartOpen = false;
+  }
+
+  // Método para abrir/cerrar el side cart
+  toggleSideCart() {
+    this.isSideCartOpen = !this.isSideCartOpen;
   }
 
   ngOnInit(): void {
@@ -98,9 +106,17 @@ export class AppComponent {
     let product = draggedItem;
     if (draggedItem) {
       console.log(draggedItem);
-      this.addProduct({ product, cantidad: 1, sizes: [{size: '', quantity: 0}]}, draggedItem.name);
+      this.addProduct(
+        { product, cantidad: 1, sizes: [{ size: '', quantity: 0 }] },
+        draggedItem.name
+      );
       console.log('Producto agregado al carrito:', draggedItem);
     }
     this.dragDropService.clearDraggedItem();
+  }
+
+  async toggleDrawer() {
+    await this.drawer.toggle(); // Espera a que el drawer termine de abrirse o cerrarse
+    this.toggleSideCart(); // Luego cambia el estado de isSideCartOpen
   }
 }

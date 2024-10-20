@@ -14,7 +14,7 @@
   </div>
   }
 
-  <app-cart-items></app-cart-items>
+  <app-cart-items [isSideCartOpen]="isSideCartOpen"></app-cart-items>
   @if (this.currentCart.totalItems > 0) {
   <div class="total w-100">
     <div class="d-flex justify-content-center mt-3">
@@ -62,3 +62,4 @@
   </div>
   }
 </mat-nav-list>
+

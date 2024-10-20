@@ -8,5 +8,6 @@ export interface Product {
     ratio: string;
     contenido: string;
     analitics: any[];
+    sizes: string[];
 }
 

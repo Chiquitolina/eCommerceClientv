@@ -3,9 +3,6 @@ h2 {
   font-size: 2rem;
 }
 
-.buttons {
-  width: 90%;
-}
 
 .mat-fab {
   position: fixed;
@@ -14,12 +11,32 @@ h2 {
   z-index: 10;
 }
 
+.cart-item {
+  opacity: 0;
+  transform: translateX(100%); /* Cambiado para que entre desde la derecha */
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Clase que se aplica cuando se abre el carrito */
+.side-cart-open .cart-item {
+  opacity: 1;
+  transform: translateX(0); /* Al abrir, se establece en su posición original */
+}
+
+/* Clase para aplicar delay a cada item */
+.cart-item-delay {
+  transition-delay: var(--delay);
+}
+
+.name-size-container {
+  margin-left: 0.5rem;
+}
+
 .minifab {
   position: absolute;
   width: 2rem;
   height: 2rem;
   left: 1rem;
-  z-index: 10101;
   opacity: 100%;
 }
 

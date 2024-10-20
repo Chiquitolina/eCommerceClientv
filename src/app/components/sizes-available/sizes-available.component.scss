@@ -1,0 +1,19 @@
+h2 {
+  font-family: "Anton SC", sans-serif;
+}
+
+.noAvailableSize {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.size:hover:not(.noAvailableSize) {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.selected-size {
+  background-color: black;
+  color: white;
+}
