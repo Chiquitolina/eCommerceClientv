@@ -7,23 +7,29 @@ import { CartItem } from '../../models/CartItem';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @Component({
   selector: 'app-product-view',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, MatExpansionModule, MatIcon, DiscountPricePipe, NgxImageZoomModule],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    MatExpansionModule,
+    MatIcon,
+    DiscountPricePipe,
+    NgxImageZoomModule,
+  ],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss',
-  providers: [ProductsService]
+  providers: [ProductsService],
 })
 export class ProductViewComponent {
-
-  private _prodSer = inject(ProductsService)
-  private _route = inject(ActivatedRoute)
-  private _cartSer = inject(CartService)
+  private _prodSer = inject(ProductsService);
+  private _route = inject(ActivatedRoute);
+  private _cartSer = inject(CartService);
 
   product: any;
   selectedImage!: string;
@@ -59,7 +65,6 @@ export class ProductViewComponent {
 
   selectSize(size: number) {
     this.selectedSize = size;
-    console.log(this.selectedSize)
+    console.log(this.selectedSize);
   }
-
 }

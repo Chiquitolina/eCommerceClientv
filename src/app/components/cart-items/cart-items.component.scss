@@ -15,6 +15,7 @@ h2 {
   opacity: 0;
   transform: translateX(100%); /* Cambiado para que entre desde la derecha */
   transition: opacity 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
 }
 
 /* Clase que se aplica cuando se abre el carrito */
@@ -51,6 +52,13 @@ h2 {
 }
 
 .imgcartside {
-  width: 4rem;
+  width: 6rem;
   border-radius: 1rem;
+}
+
+.cart-items-container {
+  overflow-y: auto; /* Asegura que haya scroll cuando sea necesario */
+  max-height: 22rem; /* Define el tamaño máximo del contenedor */
+  box-sizing: border-box; /* Asegura que el padding y borde se incluyan dentro del tamaño */
+  position: relative;
 }

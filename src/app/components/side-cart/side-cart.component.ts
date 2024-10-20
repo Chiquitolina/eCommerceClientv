@@ -8,6 +8,7 @@ import { CartItemsComponent } from '../cart-items/cart-items.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-side-cart',
@@ -18,12 +19,13 @@ import { MatButtonModule } from '@angular/material/button';
     CartItemsComponent,
     CheckoutComponent,
     MatButtonModule,
+    CommonModule
   ],
   templateUrl: './side-cart.component.html',
   styleUrl: './side-cart.component.scss',
 })
 export class SideCartComponent {
-  @Input() isSideCartOpen : boolean = false;
+  @Input() isSideCartOpen: boolean = false;
 
   cartSer = inject(CartService);
   dialog = inject(MatDialog);
@@ -31,13 +33,15 @@ export class SideCartComponent {
   currentCart!: Cart;
   private cartSubscription!: Subscription;
 
+  showDetails = false; // Estado inicial: detalles ocultos
+
   ngOnInit(): void {
     // Nos suscribimos al observable del carrito
     this.cartSubscription = this.cartSer.cart$.subscribe((cart) => {
       this.currentCart = cart;
     });
+    console.log(this.currentCart)
   }
- 
 
   getCurrentCart(): void {
     this.currentCart = this.cartSer.getCartValue();
@@ -47,6 +51,7 @@ export class SideCartComponent {
     /* side.toggle();*/
     this.openDialog('0ms', '0ms');
   }
+
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -57,6 +62,11 @@ export class SideCartComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  toggleDetails(event: Event) {
+    event.preventDefault(); // Evitar que el enlace recargue la página
+    this.showDetails = !this.showDetails; // Alterna la visibilidad de los detalles
   }
 
 }

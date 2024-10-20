@@ -7,16 +7,14 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [CommonModule, ButtonModule, MatButtonModule],
   templateUrl: './sizes-available.component.html',
-  styleUrl: './sizes-available.component.scss'
+  styleUrl: './sizes-available.component.scss',
 })
 export class SizesAvailableComponent {
+  @Input() itemSizes: any[] = [];
 
-  @Input() itemSizes : any[] = []
-
-  selectedSize! : number;
+  selectedSize!: number;
 
   selectSize(size: number) {
     this.selectedSize = size;
   }
-
 }

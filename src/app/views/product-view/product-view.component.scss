@@ -53,6 +53,13 @@ a {
   font-weight: 500;
 }
 
+lib-ngx-image-zoom {
+  width: 100%;
+  height: auto; /* Mantiene las proporciones de la imagen */
+  max-width: 100%; /* Imagen no será más grande que el contenedor */
+  object-fit: contain; /* Ajuste dentro del contenedor */
+}
+
 @media (max-width: 768px) {
   .miniimgs {
     display: none;

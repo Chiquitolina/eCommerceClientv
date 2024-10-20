@@ -20,3 +20,32 @@ mat-drawer {
 a {
   color: black;
 }
+
+span {
+  font-size: 13px;
+}
+.details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.details.visible {
+  max-height: 200px; /* Ajusta según el contenido */
+  opacity: 1;
+}
+
+.ship-icon {
+  margin-right: 0.5rem;
+  height: 100%;
+  color: whitesmoke;
+  border-radius: 1rem;
+  width: 13%;
+}
+
+.form-control {
+  margin-right: 0.5rem;
+}
+
+

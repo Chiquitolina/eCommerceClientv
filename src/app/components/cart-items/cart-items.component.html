@@ -1,18 +1,13 @@
 <div
-  class="w-100 d-flex justify-content-center flex-column align-items-center"
+  class="w-100 d-flex align-items-center flex-column cart-items-container"
   [ngClass]="{ 'side-cart-open': isSideCartOpen }"
-  style="overflow: hidden"
 >
   @for (itemcart of currentCart.items; let i = $index; track itemcart) {
 
-  <div
-    class="w-100 d-flex justify-content-center cart-item cart-item-delay"
-    [ngStyle]="{ '--delay': i * 100 + 'ms' }"
-    style="overflow: hidden"
-  >
     <div
-      class="mt-2 rounded d-flex justify-content-around align-items-center bg-white"
+      class="mt-2 rounded d-flex justify-content-around align-items-center bg-white p-2  cart-item cart-item-delay"  
       style="width: 90%"
+      [ngStyle]="{ '--delay': i * 100 + 'ms' }"
     >
       <div
         class="d-flex w-100 justify-content-around align-items-center"
@@ -46,7 +41,6 @@
         />
       </div>
     </div>
-  </div>
 
   <p-dialog
     [modal]="true"
