@@ -10,7 +10,12 @@ import { MatIcon } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
-
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SizesAvailableComponent } from '../../components/sizes-available/sizes-available.component';
+import { CardModule } from 'primeng/card';
+import {MatFormFieldModule} from '@angular/material/form-field';import { InputNumberModule } from 'primeng/inputnumber';
 @Component({
   selector: 'app-product-view',
   standalone: true,
@@ -21,6 +26,13 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     MatIcon,
     DiscountPricePipe,
     NgxImageZoomModule,
+    RatingModule,
+    FormsModule,
+    MatTooltipModule,
+    SizesAvailableComponent,
+    CardModule,
+    InputNumberModule,
+    MatFormFieldModule
   ],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss',
@@ -34,6 +46,12 @@ export class ProductViewComponent {
   product: any;
   selectedImage!: string;
   selectedSize!: number;
+
+  value!: number;
+
+  value1: number = 20;
+  value2: number = 10.5;
+  value3: number = 25;
 
   productSelectedAccordionObject = productSelectedAccordionObject;
 
@@ -61,10 +79,5 @@ export class ProductViewComponent {
   changeImage(image: string): void {
     this.selectedImage = image;
     console.log(image);
-  }
-
-  selectSize(size: number) {
-    this.selectedSize = size;
-    console.log(this.selectedSize);
   }
 }

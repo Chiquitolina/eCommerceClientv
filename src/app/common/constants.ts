@@ -56,10 +56,25 @@ export enum AccordionFilters {
     PRICES = 'Precio'
 }
   
-export const PRODUCT_SIZES: { [key in Categories]: (number | string)[] } = {
-    [Categories.CALZADOS]: [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14],
-    [Categories.ROPA]: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-};
+export const PRODUCT_SIZES: { [key in Categories]: (number | string | { size: string | number, cm?: number, cmRange?: [number, number] })[] } = {
+    [Categories.CALZADOS]: [
+      { size: 6, cm: 23.5 }, { size: 6.5, cm: 24 }, { size: 7, cm: 24.5 },
+      { size: 7.5, cm: 25 }, { size: 8, cm: 25.5 }, { size: 8.5, cm: 26 },
+      { size: 9, cm: 26.5 }, { size: 9.5, cm: 27 }, { size: 10, cm: 27.5 },
+      { size: 10.5, cm: 28 }, { size: 11, cm: 28.5 }, { size: 11.5, cm: 29 },
+      { size: 12, cm: 29.5 }, { size: 12.5, cm: 30 }, { size: 13, cm: 30.5 },
+      { size: 13.5, cm: 31 }, { size: 14, cm: 31.5 }
+    ],
+    [Categories.ROPA]: [
+      { size: 'XS', cmRange: [76, 81] }, // Pecho: 76-81 cm
+      { size: 'S', cmRange: [81, 86] },  // Pecho: 81-86 cm
+      { size: 'M', cmRange: [91, 96] },  // Pecho: 91-96 cm
+      { size: 'L', cmRange: [101, 106] },// Pecho: 101-106 cm
+      { size: 'XL', cmRange: [111, 116] }, // Pecho: 111-116 cm
+      { size: 'XXL', cmRange: [121, 127] }, // Pecho: 121-127 cm
+      { size: 'XXXL', cmRange: [132, 137] } // Pecho: 132-137 cm
+    ]
+  };
   
 export const FILTER_OPTIONS_ARRAY = [
     { key: FilterOptions.MOST_RELEVANT, value: 'Más relevante' },

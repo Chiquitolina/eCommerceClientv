@@ -37,7 +37,7 @@ h2 {
   position: absolute;
   width: 2rem;
   height: 2rem;
-  left: 1rem;
+  left: 0.5rem;
   opacity: 100%;
 }
 
@@ -58,7 +58,22 @@ h2 {
 
 .cart-items-container {
   overflow-y: auto; /* Asegura que haya scroll cuando sea necesario */
+  overflow-x: hidden;
   max-height: 22rem; /* Define el tamaño máximo del contenedor */
   box-sizing: border-box; /* Asegura que el padding y borde se incluyan dentro del tamaño */
   position: relative;
+}
+
+*::-webkit-scrollbar {
+  width: 0.25rem;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 1rem 1rem 1rem 1rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color:lightgray;
 }

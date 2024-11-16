@@ -1,26 +1,4 @@
-button {
-  border-radius: 3rem;
-}
 
-::ng-deep .ngxImageZoomContainer > img{
-  max-height: 32rem;
-  max-height: 32rem;
-}
-
-h1 {
-  font-weight: bold;
-}
-
-.noAvailableSize {
-  opacity: 0.25;
-  cursor: not-allowed;
-}
-
-.size:hover:not(.noAvailableSize) {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-}
 
 .cuotas-cartel {
   height: 4rem;
@@ -33,15 +11,16 @@ a {
 .miniimgs {
   z-index: 10000;
   cursor: pointer;
+  
+}
+
+.mini {
+  box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.75);
+
 }
 
 .selected-img {
-  border: 0.5px solid black;
-}
-
-.selected-size {
-  background-color: black;
-  color: white;
+  border: 0.5px solid gainsboro;
 }
 
 .discount {
@@ -51,13 +30,6 @@ a {
 
 .acordiontitle {
   font-weight: 500;
-}
-
-lib-ngx-image-zoom {
-  width: 100%;
-  height: auto; /* Mantiene las proporciones de la imagen */
-  max-width: 100%; /* Imagen no será más grande que el contenedor */
-  object-fit: contain; /* Ajuste dentro del contenedor */
 }
 
 @media (max-width: 768px) {
@@ -75,5 +47,8 @@ lib-ngx-image-zoom {
 
   .div-half-two {
     width: 100%;
+    max-height: 30.8rem;
+  
   }
+  
 }

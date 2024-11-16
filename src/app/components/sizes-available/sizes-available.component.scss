@@ -1,5 +1,8 @@
-h2 {
-  font-family: "Anton SC", sans-serif;
+
+.size {
+  border-radius: 10rem;
+  background-color: white;
+  border: 1px solid black;
 }
 
 .noAvailableSize {
@@ -11,6 +14,10 @@ h2 {
   background-color: black;
   color: white;
   cursor: pointer;
+}
+
+a {
+  color: black;
 }
 
 .selected-size {

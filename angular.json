@@ -30,6 +30,8 @@
               }
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",  
+              "node_modules/primeng/resources/primeng.min.css",              
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css"
@@ -90,6 +92,8 @@
               }
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",  
+              "node_modules/primeng/resources/primeng.min.css",            
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
