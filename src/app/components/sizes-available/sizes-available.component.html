@@ -2,43 +2,40 @@
   <b><i style="font-weight: 300">Seleccionar talle:</i></b>
   <a href=""><i>Guía de talles</i></a>
 </div>
-<div class="d-flex flex-wrap justify-content-center" style="max-width: 100%;">
-  
-  <p-carousel
-    [value]="itemSizes" 
-    [responsiveOptions]="responsiveOptions">
-
-        <ng-template let-size let-i="index" pTemplate="item">
-          <div
-          class="text-center bg-light rounded pt-2 pb-2"
-          [ngClass]="{
-            noAvailableSize: size.quantity === 0,
-            'selected-size': size.size == selectedSize
-          }"
-          (click)="selectSize(size.size)"
-          (mouseenter)="menuTrigger.openMenu()"
-          [matMenuTriggerFor]="tooltipMenu"
-          #menuTrigger="matMenuTrigger"
+<div class="d-flex flex-wrap justify-content-center mw-100">
+  <p-carousel [value]="itemSizes" [responsiveOptions]="responsiveOptions" [style]="{'width': '20rem'}">
+    <ng-template let-size let-i="index" pTemplate="item">
+      <div
+        class="text-center bg-light rounded pt-2 pb-2"
+        [ngClass]="{
+          noAvailableSize: size.quantity === 0,
+          'selected-size': size.size == selectedSize
+        }"
+        (click)="selectSize(size.size)"
+        (mouseenter)="menuTrigger.openMenu()"
+        [matMenuTriggerFor]="tooltipMenu"
+        #menuTrigger="matMenuTrigger"
+      >
+        <span>{{ size.size }}</span>
+        <mat-menu
+          #tooltipMenu="matMenu"
+          [overlapTrigger]="false"
+          class="custom-tooltip-menu"
         >
-          <span>{{ size.size }}</span>
-          <mat-menu
-            #tooltipMenu="matMenu"
-            [overlapTrigger]="false"
-            class="custom-tooltip-menu"
-          >
-            <ng-template matMenuContent>
-              <div
-                class="w-75 d-flex justify-content-around align-items-center"
-                style="height: 1.5rem; margin-left: 0.7rem"
-                (mouseleave)="menuTrigger.closeMenu()"
-              >
-                <img width="25" src="/assets/zapatos.png" alt="foot">
-                <p class="mt-3"><i>{{ size.cm }} cm</i></p>
-              </div>
-            </ng-template>
-          </mat-menu>
-        </div>
-        </ng-template>
-</p-carousel>
- 
+          <ng-template matMenuContent>
+            <div
+              class="w-75 d-flex justify-content-around align-items-center"
+              style="height: 1.5rem; margin-left: 0.7rem"
+              (mouseleave)="menuTrigger.closeMenu()"
+            >
+              <img width="25" src="/assets/zapatos.png" alt="foot" />
+              <p class="mt-3">
+                <i>{{ size.cm }} cm</i>
+              </p>
+            </div>
+          </ng-template>
+        </mat-menu>
+      </div>
+    </ng-template>
+  </p-carousel>
 </div>

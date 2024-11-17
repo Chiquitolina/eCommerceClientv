@@ -42,7 +42,7 @@ export class SizesAvailableComponent {
       },
       {
           breakpoint: '1100px',
-          numVisible: 1,
+          numVisible: 3,
           numScroll: 1
       }
   ];

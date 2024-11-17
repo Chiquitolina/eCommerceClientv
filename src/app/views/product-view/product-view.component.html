@@ -18,7 +18,7 @@
           </div>
           <div class="col col-xl-10 col-md-10 col-sm-12 borders">
             <img
-              class="mini"
+              class="mini img"
               src="{{ selectedImage }}"
               alt=""
               style="width: 100%"
@@ -44,7 +44,9 @@
 
             <p-rating class="" [(ngModel)]="value" />
           </div>
-          <p class="text-secondary" style="font-size: 12px;">{{ product?.description }}</p>
+          <p class="text-secondary" style="font-size: 12px">
+            {{ product?.description }}
+          </p>
 
           <h6 class="">
             <b *ngIf="product.discount > 0; else noDiscount">
@@ -75,7 +77,7 @@
           <div class="d-flex flex-column flex-wrap">
             <app-sizes-available
               [itemSizes]="product?.sizes"
-              style="max-width: 100%;"
+              style="max-width: 100%"
             ></app-sizes-available>
 
             <button
