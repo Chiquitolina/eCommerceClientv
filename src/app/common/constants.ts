@@ -19,10 +19,10 @@ export enum carouselHeaderOptions {
 }
 
 export const carouselHeaderObject = [
-    {key: carouselHeaderOptions.DESCUENTO_OFF, value: 'Ver productos'},
-    {key: carouselHeaderOptions.ENVIO_GRATIS, value: 'Ver productos'},
-    {key: carouselHeaderOptions.CUOTAS, value: 'Ver promociones bancarias'},
-    {key: carouselHeaderOptions.LLEGA_MAÑANA, value: 'Ver Términos y Condiciones'}
+    {key: carouselHeaderOptions.DESCUENTO_OFF, value: 'Ver productos', icon: 'local_offer'},
+    {key: carouselHeaderOptions.ENVIO_GRATIS, value: 'Ver productos', icon: 'local_shipping'},
+    {key: carouselHeaderOptions.CUOTAS, value: 'Ver promociones bancarias', icon: 'credit_card'},
+    {key: carouselHeaderOptions.LLEGA_MAÑANA, value: 'Ver Términos y Condiciones', icon: 'gavel'}
 ]
 
 export enum productSelectedAccordion {

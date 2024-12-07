@@ -1,14 +1,11 @@
-
-
-
-
 nav {
-  min-height: 3.5rem;
+  min-height: 2rem;
+  border-radius: 3rem;
+  box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
 }
 
 h1 {
   font-family: "Anton SC", sans-serif;
-
 }
 
 a {
@@ -16,7 +13,7 @@ a {
 }
 
 .logo-nav {
-  width: 3rem; 
+  width: 3rem;
   border-radius: 1rem;
   margin-left: 2.5rem;
 }
@@ -31,11 +28,11 @@ button {
   border: none;
   color: black;
   font-weight: 300;
+  border-radius: 1rem;
 }
 
 nav button:hover {
   background-color: initial;
-  border-bottom: 1px solid black;
   border-radius: 0;
 }
 
@@ -46,29 +43,28 @@ button:active {
 }
 
 button:disabled {
-  
   color: grey;
 }
 
 /* Centrar los elementos dentro del navbar */
 .navbar-nav {
-    flex-direction: row;
-    justify-content: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-item {
+  margin: 0 10px; /* Espaciado entre elementos */
+}
+
+/* Para centrar el texto en los enlaces del dropdown */
+.nav-link {
+  text-align: center;
+}
+
+/* Ajustes adicionales para la visualización en dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
   }
-  
-  .nav-item {
-    margin: 0 10px; /* Espaciado entre elementos */
-  }
-  
-  /* Para centrar el texto en los enlaces del dropdown */
-  .nav-link {
-    text-align: center; 
-  }
-  
-  /* Ajustes adicionales para la visualización en dispositivos móviles */
-  @media (max-width: 768px) {
-    .navbar-nav {
-      flex-direction: column; /* Cambia a columna en pantallas pequeñas */
-      align-items: center; /* Centra los elementos */
-    }
-  }
+}

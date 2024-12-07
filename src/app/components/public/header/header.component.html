@@ -1,14 +1,12 @@
 @if (showHeader) {
-<div class="w-100 bg-dark d-flex justify-content-center p-2 text-white">
+<!-- <div class="w-100 bg-dark d-flex justify-content-center p-2 text-white">
   <b><span>6 cuotas sin interés en todo el sitio</span></b>
-</div>
+</div>-->
 <app-navbar></app-navbar>
 <div
   id="carouselExampleInterval"
-  class="carousel slide"
   data-bs-ride="carousel"
-  class="text-black"
-  class="bg-light text-dark"
+  class="bg-white text-dark carousel slide"
 >
   <div class="carousel-inner text-center text-black">
     @for (item of carouselHeaderObject; track item; let i = $index) {
@@ -18,9 +16,12 @@
       data-bs-interval="5000"
     >
       {{ item.key }}
+      <div class="d-flex justify-content-center">
+      <mat-icon>{{item.icon}}</mat-icon>
       <p>
         <a href="">{{ item.value }}</a>
       </p>
+    </div>
     </div>
     }
   </div>

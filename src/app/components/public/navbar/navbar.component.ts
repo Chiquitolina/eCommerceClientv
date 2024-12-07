@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CapitalizePipe } from '../../../pipes/capitalize/capitalize.pipe';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReplaceCharPipe } from '../../../pipes/replaceChar/replace-char.pipe';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,7 @@ import { ReplaceCharPipe } from '../../../pipes/replaceChar/replace-char.pipe';
     CapitalizePipe,
     ReplaceCharPipe,
     InputTextModule,
+    MatButtonModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
