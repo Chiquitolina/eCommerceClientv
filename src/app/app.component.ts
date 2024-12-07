@@ -22,6 +22,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { SideCartComponent } from './components/public/side-cart/side-cart.component';
+import { ScrollService } from './scroll.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -60,6 +61,8 @@ export class AppComponent {
 
   currentCart!: Cart;
   private cartSubscription!: Subscription;
+
+  constructor(private scrollService: ScrollService) {}
 
   public cleanCartEvent() {
     this.cartSer.clearCart();
