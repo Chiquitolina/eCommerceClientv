@@ -6,8 +6,8 @@ import { catchError, pipe, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class CategoriesService {
-  baseUrl = 'https://ecommerce-0028.onrender.com';
-  /*baseUrl = 'http://localhost:3000';*/
+  /*baseUrl = 'https://ecommerce-0028.onrender.com';*/
+  baseUrl = 'http://localhost:3000';
 
   http = inject(HttpClient);
 

@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { STORE_NAVBAR_MENU } from '../../common/constants';
+import { STORE_NAVBAR_MENU } from '../../../common/constants';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { CategoriesService } from '../../services/categories/categories.service';
+import { CategoriesService } from '../../../services/categories/categories.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
+import { CapitalizePipe } from '../../../pipes/capitalize/capitalize.pipe';
 import { InputTextModule } from 'primeng/inputtext';
-import { ReplaceCharPipe } from '../../pipes/replaceChar/replace-char.pipe';
+import { ReplaceCharPipe } from '../../../pipes/replaceChar/replace-char.pipe';
 
 @Component({
   selector: 'app-navbar',

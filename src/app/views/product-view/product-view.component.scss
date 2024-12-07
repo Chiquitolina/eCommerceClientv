@@ -2,6 +2,11 @@
   height: 4rem;
 }
 
+.div-half-two {
+   overflow-y: auto; 
+   scrollbar-width: thin;
+}
+
 a {
   color: black;
 }
@@ -43,7 +48,12 @@ a {
 
   .div-half-two {
     width: 100%;
-    max-height: 30.8rem;
+    height: auto;
     margin-top: 2rem;
+  }
+
+  button {
+    margin-bottom: 2rem;
+    z-index: 10000000;
   }
 }

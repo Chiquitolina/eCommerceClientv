@@ -1,8 +1,6 @@
 
 .size {
-  border-radius: 10rem;
-  background-color: white;
-  border: 1px solid black;
+  cursor: pointer;
 }
 
 .noAvailableSize {
@@ -12,7 +10,7 @@
 
 .size:hover:not(.noAvailableSize) {
   background-color: black;
-  color: white;
+  color: grey;
   cursor: pointer;
 }
 
@@ -21,6 +19,7 @@ a {
 }
 
 .selected-size {
-  background-color: black;
-  color: white;
+  background-color: red;
+  color: black;
+  border: 1px solid grey;
 }

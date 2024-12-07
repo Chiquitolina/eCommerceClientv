@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
+import { ArticlesDisplayComponent } from '../../components/public/articles-display/articles-display.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
 @Component({

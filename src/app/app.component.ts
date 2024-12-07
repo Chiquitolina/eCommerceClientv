@@ -1,23 +1,17 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
+import { HeaderComponent } from './components/public/header/header.component';
+import { FooterComponent } from './components/public/footer/footer.component';
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
 import { CartService } from './services/cart/cart.service';
 import { CartItem } from './models/CartItem';
 import { Cart } from './models/Cart';
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogModule,
-} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card'; // Si usas tarjetas
 import { MatDividerModule } from '@angular/material/divider'; // Si usas divisores
-import { CartItemsComponent } from './components/cart-items/cart-items.component';
+import { CartItemsComponent } from './components/public/cart-items/cart-items.component';
 import { Subscription } from 'rxjs';
 import { DragDropService } from './services/dragdrop/drag-drop.service';
 import { DragDropModule } from 'primeng/dragdrop';
@@ -27,7 +21,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
-import { SideCartComponent } from './components/side-cart/side-cart.component';
+import { SideCartComponent } from './components/public/side-cart/side-cart.component';
 
 @Component({
   selector: 'app-root',

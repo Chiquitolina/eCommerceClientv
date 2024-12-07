@@ -13,9 +13,10 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SizesAvailableComponent } from '../../components/sizes-available/sizes-available.component';
+import { SizesAvailableComponent } from '../../components/public/sizes-available/sizes-available.component';
 import { CardModule } from 'primeng/card';
-import {MatFormFieldModule} from '@angular/material/form-field';import { InputNumberModule } from 'primeng/inputnumber';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { InputNumberModule } from 'primeng/inputnumber';
 @Component({
   selector: 'app-product-view',
   standalone: true,
@@ -32,7 +33,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';import { InputNu
     SizesAvailableComponent,
     CardModule,
     InputNumberModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss',
@@ -80,4 +81,10 @@ export class ProductViewComponent {
     this.selectedImage = image;
     console.log(image);
   }
+
+  onSizedChange(value: number): void {
+    this.selectedSize = value;
+    console.log('selectedsize:', value)  
+  }
+  
 }

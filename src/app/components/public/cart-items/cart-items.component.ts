@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
-import { CartService } from '../../services/cart/cart.service';
+import { CartService } from '../../../services/cart/cart.service';
 import { MatButtonModule } from '@angular/material/button';
-import { Cart } from '../../models/Cart';
+import { Cart } from '../../../models/Cart';
 import { Subscription } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { SizesAvailableComponent } from '../sizes-available/sizes-available.component';
 import { CommonModule } from '@angular/common';
-import { CartItem } from '../../models/CartItem';
+import { CartItem } from '../../../models/CartItem';
 @Component({
   selector: 'app-cart-items',
   standalone: true,

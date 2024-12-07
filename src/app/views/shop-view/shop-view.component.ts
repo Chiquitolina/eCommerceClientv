@@ -13,11 +13,11 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
-import { ArticlesDisplayComponent } from '../../components/articles-display/articles-display.component';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ArticlesDisplayComponent } from '../../components/public/articles-display/articles-display.component';
+import { ProductCardComponent } from '../../components/public/product-card/product-card.component';
 import { ProductsService } from '../../services/products/products.service';
 import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
-import { AccordionFiltersComponent } from '../../components/accordion-filters/accordion-filters.component';
+import { AccordionFiltersComponent } from '../../components/public/accordion-filters/accordion-filters.component';
 import { FiltersService } from '../../services/filters/filters.service';
 import { ReplaceCharPipe } from '../../pipes/replaceChar/replace-char.pipe';
 

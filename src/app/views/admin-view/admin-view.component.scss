@@ -1,0 +1,66 @@
+
+
+.visits {
+    border-radius: 1.5rem;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.sales {
+    background-color: #00C68A;
+    color: #00C68A;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.purchases {
+    background-color: #3EA5F4;
+    color: #3EA5F4;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.orders {
+    background-color: #F1546E;
+    color: #F1546E;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.growth {
+    background-color: #FDA005;
+    color: #FDA005;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+mat-drawer {
+    box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+
+}
+
+.fs11 {
+    font-size: 11px;
+}
+
+.fs13 {
+    font-size: 13px;
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    background: var(--surface-ground);
+    color: var(--text-color);
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+        box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+
+}

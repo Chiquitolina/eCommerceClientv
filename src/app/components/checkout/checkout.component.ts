@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { CartService } from '../../services/cart/cart.service';
 import { PaymentsService } from '../../services/payments/payments.service';
-import { CartItemsComponent } from '../cart-items/cart-items.component';
+import { CartItemsComponent } from '../public/cart-items/cart-items.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { Cart } from '../../models/Cart';

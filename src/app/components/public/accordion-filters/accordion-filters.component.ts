@@ -4,17 +4,17 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { FiltersService } from '../../services/filters/filters.service';
+import { FiltersService } from '../../../services/filters/filters.service';
 
-import { FilterState } from '../../models/FiltersState';
-import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
+import { FilterState } from '../../../models/FiltersState';
+import { CapitalizePipe } from '../../../pipes/capitalize/capitalize.pipe';
 import { SliderModule } from 'primeng/slider';
 
 import {
   ACCORDION_FILTERS,
   AccordionFilter,
   AccordionFilters,
-} from '../../common/constants';
+} from '../../../common/constants';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

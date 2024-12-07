@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ButtonModule } from 'primeng/button';
-import { PRODUCT_SIZES } from '../../common/constants';
+import { PRODUCT_SIZES } from '../../../common/constants';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { CarouselModule } from 'primeng/carousel';
@@ -16,6 +16,7 @@ import { CarouselModule } from 'primeng/carousel';
 })
 export class SizesAvailableComponent {
   @Input() itemSizes: any[] = [];
+  @Output() isSized: EventEmitter<number> = new EventEmitter<number>();
 
   selectedSize!: number;
 
@@ -26,6 +27,10 @@ export class SizesAvailableComponent {
   selectSize(size: number) {
     this.selectedSize = size;
     console.log(this.selectedSize);
+  }
+
+  emitSizedValue(value: number): void {
+    this.isSized.emit(value); // Emitiendo el valor booleano
   }
 
   ngOnInit() {

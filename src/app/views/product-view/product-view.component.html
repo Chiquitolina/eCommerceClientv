@@ -23,19 +23,11 @@
               alt=""
               style="width: 100%"
             />
-
-            <!-- <lib-ngx-image-zoom
-            [thumbImage]="selectedImage"
-            [fullImage]="selectedImage"
-            [magnification]="1"
-            [zoomMode]="'hover'"
-          ></lib-ngx-image-zoom>-->
           </div>
         </div>
       </div>
       <div
         class="col-xl-6 col-md-12 col-sm-12 div-half-two mini"
-        style="max-height: 30.8rem; overflow-y: auto; scrollbar-width: thin"
       >
         <div class="row bg-white rounded">
           <h3 class="mt-3">{{ product?.name }}</h3>
@@ -49,12 +41,13 @@
           </p>
 
           <h6 class="">
-            <b *ngIf="product.discount > 0; else noDiscount">
+            @if (product?.discount > 0) {
+            <b>
               <span
                 class="text-secondary fw-light"
                 style="text-decoration: line-through"
               >
-                ${{ product.price | number }}
+                ${{ product?.price | number }}
               </span>
               <span>
                 ${{
@@ -68,16 +61,18 @@
                 </span>
               </i>
             </b>
+            } @else {
             <ng-template #noDiscount>
-              <b>${{ product.price | number }}</b>
+              <b>${{ product?.price | number }}</b>
             </ng-template>
+            }
           </h6>
           <hr />
 
           <div class="d-flex flex-column flex-wrap">
             <app-sizes-available
               [itemSizes]="product?.sizes"
-              style="max-width: 100%"
+              (isSized)="onSizedChange($event)"
             ></app-sizes-available>
 
             <button

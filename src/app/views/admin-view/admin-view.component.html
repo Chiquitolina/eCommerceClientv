@@ -1,46 +1,246 @@
-<div class="container">
-    <div class="w-50 mt-3 d-flex border border-white rounded">
-      <button class="d-flex align-items-center" color="basic" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <span>Productos</span>
-        </button>
-        <button mat-menu-item>
-          <span>Ventas</span>
-        </button>
-      </mat-menu>
-      
-      <h2 class="">Panel de administración</h2>
+<mat-drawer-container class="example-container" style="height: 100vh" autosize>
+  <mat-drawer
+    #drawer
+    style="width: 18%"
+    class="bg-white example-sidenav"
+    mode="side"
+  >
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+  <div class="container">
+    <div class="card d-flex border-0">
+      <mat-toolbar>
+        <div class="d-flex align-items-center">
+          <button
+            (click)="drawer.toggle()"
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with menu icon"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Dashboard</span>
+          <span class="example-spacer"></span>
+        </div>
+        <div class="d-flex align-items-center justify-content-end w-100">
+          <i
+            class="pi pi-bell mr-4 p-text-secondary"
+            pBadge
+            style="font-size: 2rem; margin-right: 1rem"
+            value="2"
+          ></i>
+          <p-avatar
+            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+            styleClass="mr-2"
+            size="large"
+            shape="circle"
+          />
+        </div>
+      </mat-toolbar>
+    </div>
+    <div class="row justify-content-around">
+      <div
+        class="col-2 visits bg-dark p-3 d-flex align-items-center flex-column"
+      >
+        <div class="w-100 d-flex justify-content-between">
+          <div
+            style="border-radius: 2rem"
+            class="bg-white d-flex align-items-center p-2"
+          >
+            <mat-icon>remove_red_eye</mat-icon>
+          </div>
+          <div class="d-flex flex-column text-white">
+            <i class="fs13 text-end">Total Visits</i>
+            <div class="d-flex flex-column align-items-center">
+              <b>$1000</b>
+              <i class="fs11">This month</i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-white d-flex justify-content-between w-100 align-items-center fs13 mt-2"
+        >
+          <i>Since last month:</i>
+          <b>xxx%</b>
+        </div>
+        <div>
+          <apx-chart
+            [series]="miniChartOptions.series"
+            [chart]="miniChartOptions.chart"
+            [xaxis]="miniChartOptions.xaxis"
+            [yaxis]="miniChartOptions.yaxis"
+            [title]="miniChartOptions.title"
+            [dataLabels]="miniChartOptions.dataLabels"
+            [grid]="miniChartOptions.grid"
+            [tooltip]="miniChartOptions.tooltip"
+          ></apx-chart>
+        </div>
       </div>
-    <table class="table table-hover mt-3">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody class="border">
-        <tr *ngFor="let product of productos; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            {{ product.name }}
-          </td>
-          <td>{{ product.price }}</td>
-          <td class="d-flex justify-content-around align-items-center flex-wrap">
-            <button color="primary" mat-raised-button [disabled]="product.name == ''">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button color="warn" mat-raised-button [disabled]="product.name == ''">
-              <mat-icon>delete_forever</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button class="m-4 bg-dark text-white" mat-raised-button>Añadir Producto</button>
+
+      <div class="col-2 sales p-3 d-flex align-items-center flex-column">
+        <div class="w-100 d-flex justify-content-between">
+          <div
+            style="border-radius: 2rem"
+            class="bg-white d-flex align-items-center p-2"
+          >
+            <mat-icon> monetization_on</mat-icon>
+          </div>
+          <div class="d-flex flex-column text-white">
+            <i class="fs13 text-end">Total Sales</i>
+            <div class="d-flex flex-column align-items-center">
+              <b>$1000</b>
+              <i class="fs11">This month</i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-white d-flex justify-content-between w-100 align-items-center fs13 mt-2"
+        >
+          <i>Since last month:</i>
+          <b>xxx%</b>
+        </div>
+        <div>
+          <apx-chart
+            [series]="miniChartOptions.series"
+            [chart]="miniChartOptions.chart"
+            [xaxis]="miniChartOptions.xaxis"
+            [yaxis]="miniChartOptions.yaxis"
+            [title]="miniChartOptions.title"
+            [dataLabels]="miniChartOptions.dataLabels"
+            [grid]="miniChartOptions.grid"
+            [tooltip]="miniChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+      <div class="col-2 orders p-3 d-flex align-items-center flex-column">
+        <div class="w-100 d-flex justify-content-between">
+          <div
+            style="border-radius: 2rem"
+            class="bg-white d-flex align-items-center p-2"
+          >
+            <mat-icon> receipt</mat-icon>
+          </div>
+          <div class="d-flex flex-column text-white">
+            <i class="fs13 text-end">Total Orders</i>
+            <div class="d-flex flex-column align-items-center">
+              <b>$1000</b>
+              <i class="fs11">This month</i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-white d-flex justify-content-between w-100 align-items-center fs13 mt-2"
+        >
+          <i>Since last month:</i>
+          <b>xxx%</b>
+        </div>
+        <div>
+          <apx-chart
+            [series]="miniChartOptions.series"
+            [chart]="miniChartOptions.chart"
+            [xaxis]="miniChartOptions.xaxis"
+            [yaxis]="miniChartOptions.yaxis"
+            [title]="miniChartOptions.title"
+            [dataLabels]="miniChartOptions.dataLabels"
+            [grid]="miniChartOptions.grid"
+            [tooltip]="miniChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+      <div class="col-2 purchases p-3 d-flex align-items-center flex-column">
+        <div class="w-100 d-flex justify-content-between">
+          <div
+            style="border-radius: 2rem"
+            class="bg-white d-flex align-items-center p-2"
+          >
+            <mat-icon>store</mat-icon>
+          </div>
+          <div class="d-flex flex-column text-white">
+            <i class="fs13 text-end">Total Purchases</i>
+            <div class="d-flex flex-column align-items-center">
+              <b>$1000</b>
+              <i class="fs11">This month</i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-white d-flex justify-content-between w-100 align-items-center fs13 mt-2"
+        >
+          <i>Since last month:</i>
+          <b>xxx%</b>
+        </div>
+        <div>
+          <apx-chart
+            [series]="miniChartOptions.series"
+            [chart]="miniChartOptions.chart"
+            [xaxis]="miniChartOptions.xaxis"
+            [yaxis]="miniChartOptions.yaxis"
+            [title]="miniChartOptions.title"
+            [dataLabels]="miniChartOptions.dataLabels"
+            [grid]="miniChartOptions.grid"
+            [tooltip]="miniChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div class="col-2 growth p-3 d-flex align-items-center flex-column">
+        <div class="w-100 d-flex justify-content-between">
+          <div
+            style="border-radius: 2rem"
+            class="bg-white d-flex align-items-center p-2"
+          >
+            <mat-icon>trending_up</mat-icon>
+          </div>
+          <div class="d-flex flex-column text-white">
+            <i class="fs13 text-end">Total Growth</i>
+            <div class="d-flex flex-column align-items-center">
+              <b>$1000</b>
+              <i class="fs11">This month</i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="text-white d-flex justify-content-between w-100 align-items-center fs13 mt-2"
+        >
+          <i>Since last month:</i>
+          <b>xxx%</b>
+        </div>
+        <div>
+          <apx-chart
+            [series]="miniChartOptions.series"
+            [chart]="miniChartOptions.chart"
+            [xaxis]="miniChartOptions.xaxis"
+            [yaxis]="miniChartOptions.yaxis"
+            [title]="miniChartOptions.title"
+            [dataLabels]="miniChartOptions.dataLabels"
+            [grid]="miniChartOptions.grid"
+            [tooltip]="miniChartOptions.tooltip"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <p-card class="col-7">
+        <div>
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [xaxis]="chartOptions.xaxis"
+            [title]="chartOptions.title"
+          ></apx-chart>
+        </div>
+      </p-card>
+      <p-card class="col-5">
+        <div>
+          <apx-chart
+            [series]="donutChartOptions.series"
+            [chart]="donutChartOptions.chart"
+            [legend]="donutChartOptions.legend"
+            [fill]="donutChartOptions.fill"
+            [title]="donutChartOptions.title"
+          ></apx-chart>
+        </div>
+      </p-card>
+    </div>
   </div>
-  
+</mat-drawer-container>
