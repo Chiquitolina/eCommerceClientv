@@ -1,5 +1,5 @@
 mat-card {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 :host ::ng-deep {
@@ -10,21 +10,19 @@ mat-card {
 
 .card {
   width: 18rem;
-  height: 30rem;
+  height: 28rem;
   margin-bottom: 1rem;
 }
 
 .card-details {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 1rem;
+  margin-top: 0 ;
 }
 
 .card-product-price {
   border-radius: 3rem;
-  border: 3px solid white;
-  background-color: whitesmoke;
 }
 
 .card-img-top {
@@ -40,9 +38,14 @@ mat-card {
   font-size: medium;
 }
 
+.discount-mini-fab {
+  position: absolute;
+  font-size: 15px;
+}
+
 .discount {
   color: green;
-  font-weight: 600;
+  font-size: 15px;
 }
 
 button {

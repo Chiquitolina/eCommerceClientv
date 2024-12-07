@@ -1,20 +1,24 @@
-<p-skeleton
-  *ngIf="isLoading"
-  shape="rectangle"
-  width="100%"
-  height="28rem"
-></p-skeleton>
-
+@if (isLoading) {
+<p-skeleton shape="rectangle" width="100%" height="28rem"></p-skeleton>
+} @else {
 <mat-card
   pDraggable
-  (onDragStart)="dragStart()" 
+  (onDragStart)="dragStart()"
   (onDragEnd)="dragEnd()"
   class="product-card"
-  *ngIf="!isLoading"
-  style="height: auto; min-height: 28rem"
+  style="height: auto"
   [ngStyle]="{ 'animation-delay': delay + 's' }"
 >
-  <div class="d-flex justify-content-center">
+  @if (productSend.discount > 0) {
+  <button
+    class="discount-mini-fab text-success"
+    mat-mini-fab
+    aria-label="Example icon button with a menu icon"
+  >
+    <b>-</b><i>{{ productSend.discount }}%</i>
+  </button>
+  }
+  <div class="d-flex">
     <img
       class="card-img-top"
       src="{{ productSend.image }}"
@@ -23,19 +27,16 @@
     />
   </div>
 
-  <div class="card-body">
-    <div class="card-details">
-      <h6 class="">{{ productSend.name }}</h6>
-      <p class="card-text text-secondary">{{ productSend.shortdescription }}</p>
-    </div>
-    <div
-      class="d-flex justify-content-center w-100 mb-1 card-product-price mt-3"
-    >
-      <h6 class="m-1">
-        <b *ngIf="productSend.discount > 0; else noDiscount">
+  <div class="card-details">
+    <b>{{ productSend.name }}</b>
+    <p class="card-text text-secondary">{{ productSend.shortdescription }}</p>
+    <div class="w-100 card-product-price">
+      <h6>
+        @if (productSend.discount > 0) {
+        <b>
           <span
-            class="text-secondary fw-light"
-            style="text-decoration: line-through"
+            class="text-secondary fw-light text-danger"
+            style="text-decoration: line-through; font-size: 13px"
           >
             ${{ productSend.price | number }}
           </span>
@@ -46,19 +47,11 @@
             }}
           </span>
         </b>
-        <ng-template #noDiscount>
-          <b>${{ productSend.price | number }}</b>
-        </ng-template>
+        } @else {
+        <b>${{ productSend.price | number }}</b>
+        }
       </h6>
     </div>
-    @if (productSend.discount !== "0") {
-    <b
-      ><i
-        ><span class="card-text discount"
-          >{{ productSend.discount }}% de descuento</span
-        ></i
-      ></b
-    >
-    }
   </div>
 </mat-card>
+}

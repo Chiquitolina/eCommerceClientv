@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DragDropService } from '../../../services/dragdrop/drag-drop.service';
+import { MatButtonModule, MatButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [MatCard, RouterLink, DiscountPricePipe, CommonModule, SkeletonModule, DragDropModule],
+  imports: [MatCard, RouterLink, DiscountPricePipe, CommonModule, SkeletonModule, DragDropModule, MatButtonModule, MatIconModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
