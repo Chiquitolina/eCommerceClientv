@@ -1,11 +1,22 @@
+
+
 mat-card {
   background-color: white;
+  height: auto; 
+  min-height: 28.5rem;
+  font-family: "Helvetica Neue Regular";
+
 }
 
 :host ::ng-deep {
   [pDraggable] {
     cursor: move;
   }
+}
+
+.old-price {
+  text-decoration: line-through; 
+  font-size: 13px;
 }
 
 .card {
@@ -26,10 +37,10 @@ mat-card {
 }
 
 .card-img-top {
-  width: 100%;
+  width: 90%;
   height: 18rem;
   border-radius: 1rem;
-  border: 2px solid white;
+  border: 2px solid rgb(236, 234, 234);
   cursor: pointer;
   margin: 1rem;
 }

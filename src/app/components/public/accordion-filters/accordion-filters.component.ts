@@ -17,6 +17,7 @@ import {
 } from '../../../common/constants';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-accordion-filters',
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SliderModule,
     FormsModule,
+    MatDividerModule
   ],
   templateUrl: './accordion-filters.component.html',
   styleUrl: './accordion-filters.component.scss',

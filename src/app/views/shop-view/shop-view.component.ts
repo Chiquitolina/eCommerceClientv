@@ -20,6 +20,7 @@ import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 import { AccordionFiltersComponent } from '../../components/public/accordion-filters/accordion-filters.component';
 import { FiltersService } from '../../services/filters/filters.service';
 import { ReplaceCharPipe } from '../../pipes/replaceChar/replace-char.pipe';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-shop-view',
@@ -35,7 +36,8 @@ import { ReplaceCharPipe } from '../../pipes/replaceChar/replace-char.pipe';
     FormsModule,
     CapitalizePipe,
     AccordionFiltersComponent,
-    ReplaceCharPipe
+    ReplaceCharPipe,
+    MatDividerModule
   ],
   templateUrl: './shop-view.component.html',
   styleUrl: './shop-view.component.scss',

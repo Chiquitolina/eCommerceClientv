@@ -5,8 +5,7 @@
   pDraggable
   (onDragStart)="dragStart()"
   (onDragEnd)="dragEnd()"
-  class="product-card"
-  style="height: auto"
+  class="product-card text-black"
   [ngStyle]="{ 'animation-delay': delay + 's' }"
 >
   @if (productSend.discount > 0) {
@@ -18,7 +17,7 @@
     <b>-</b><i>{{ productSend.discount }}%</i>
   </button>
   }
-  <div class="d-flex">
+  <div class="d-flex w-100 justify-content-center">
     <img
       class="card-img-top"
       src="{{ productSend.image }}"
@@ -34,21 +33,18 @@
       <h6>
         @if (productSend.discount > 0) {
         <b>
-          <span
-            class="text-secondary fw-light text-danger"
-            style="text-decoration: line-through; font-size: 13px"
-          >
+          <span class="text-secondary fw-light text-danger old-price">
             ${{ productSend.price | number }}
           </span>
-          <span>
+          <h5>
             ${{
               (productSend.price | discountPrice : productSend.discount)
                 .discountedPrice | number
             }}
-          </span>
+          </h5>
         </b>
         } @else {
-        <b>${{ productSend.price | number }}</b>
+        <h5>${{ productSend.price | number }}</h5>
         }
       </h6>
     </div>

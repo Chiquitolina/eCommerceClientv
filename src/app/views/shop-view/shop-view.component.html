@@ -19,30 +19,27 @@
 </mat-drawer>
 <mat-drawer-container autosize>
   <mat-drawer
-    class="w-25 bg-light text-black filtersSideBar"
+    class="w-25 bg-white text-black filtersSideBar"
     #drawer
     mode="side"
     opened
     (openedChange)="onDrawerToggle($event)"
   >
     <div
-      class="w-100 d-flex justify-content-between mt-2 mb-2 align-items-center"
+      class="w-100 d-flex justify-content-between mt-4 mb-2 align-items-center"
       (click)="drawer.toggle()"
     >
       <h1>Filtros</h1>
-      <mat-icon class="m-2 icon-close">close</mat-icon>
+      <a class="clean" (click)="this.cleanFilters()"><p>Limpiar filtros</p></a>
     </div>
+    <mat-divider></mat-divider>
 
     <app-accordion-filters
       [sizesReceived]="sizes"
       [range]="rangeValues"
       (filtersChanged)="onFiltersChanged($event)"
     ></app-accordion-filters>
-    <div class="d-flex w-100 justify-content-end">
-      <a class="clean m-2" (click)="this.cleanFilters()"
-        ><p>Limpiar filtros</p></a
-      >
-    </div>
+    <div class="d-flex w-100 justify-content-end"></div>
   </mat-drawer>
 
   <mat-drawer-content>
@@ -67,11 +64,11 @@
         <h2 class="titulo mb-4">Shop</h2>
         <div class="d-flex justify-content-between align-items-center w-100">
           <i>Productos encontrados: {{ products.length }}</i>
-          <div class="d-flex filterStateAction">
+          <div class="d-flex align-items-center filterStateAction">
             <mat-icon class="m-1">filter_list</mat-icon>
-            <h4 mat-icon-button (click)="drawer.toggle()">
+            <span mat-icon-button (click)="drawer.toggle()">
               {{ filtersState }} filtros
-            </h4>
+            </span>
           </div>
         </div>
         <!--  <button class="btn btn-primary bg-dark border-0">
@@ -85,7 +82,7 @@
         <div class="row d-flex justify-content-center">
           @for (product of products; track product) {
           <app-product-card
-            class="col-xl-4 col-md-5 col-10 mb-4 text-center"
+            class="col-xl-4 col-md-5 col-10 mb-4"
             [productSend]="product"
             [isLoading]="isLoading"
           ></app-product-card>

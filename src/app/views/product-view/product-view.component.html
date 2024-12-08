@@ -30,42 +30,42 @@
         class="col-xl-6 col-md-12 col-sm-12 div-half-two mini"
       >
         <div class="row bg-white rounded">
-          <h3 class="mt-3">{{ product?.name }}</h3>
+          <h3 class="mt-3 text-black">{{ product?.name }}</h3>
           <div class="d-flex justify-content-between">
             <p class="text-secondary">{{ product?.shortdescription }}</p>
 
             <p-rating class="" [(ngModel)]="value" />
           </div>
-          <p class="text-secondary" style="font-size: 12px">
+          <p class="text-dark" style="font-size: 12px">
             {{ product?.description }}
           </p>
 
           <h6 class="">
+            <div class="d-flex align-items-center">
             @if (product?.discount > 0) {
-            <b>
+              <div>
               <span
-                class="text-secondary fw-light"
+                class="text-secondary fw-light text-danger"
                 style="text-decoration: line-through"
               >
                 ${{ product?.price | number }}
               </span>
-              <span>
+              <h5 class="text-black">
                 ${{
                   (product.price | discountPrice : product.discount)
                     .discountedPrice | number
                 }}
-              </span>
-              <i>
-                <span class="card-text discount">
+              </h5>
+            </div>
+              <i class="card-text discount">
                   {{ product.discount }}% de descuento
-                </span>
               </i>
-            </b>
             } @else {
             <ng-template #noDiscount>
               <b>${{ product?.price | number }}</b>
             </ng-template>
             }
+          </div>
           </h6>
           <hr />
 

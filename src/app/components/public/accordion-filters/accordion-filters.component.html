@@ -1,8 +1,11 @@
 <mat-accordion multi>
-  <mat-expansion-panel [expanded]="true" class="text-black mb-2">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel
+    class="p-3"
+    style="border-radius: 0; background-color: white; box-shadow: none"
+  >
+    <mat-expansion-panel-header class="rounded">
       <mat-panel-description>
-        <b>Filtros aplicados</b>
+        <b class="text-black">Filtros aplicados</b>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="row w-100 d-flex flex-wrap">
@@ -24,13 +27,19 @@
       } } }
     </div>
   </mat-expansion-panel>
+  <div class="d-flex justify-content-center">
+    <mat-divider></mat-divider>
+  </div>
 </mat-accordion>
 @for (item of accordionFilters; track item) { @if (item.name !== 'Categories') {
 <mat-accordion multi>
-  <mat-expansion-panel class="text-black mb-2">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel
+    class="p-3"
+    style="border-radius: 0; background-color: white; box-shadow: none"
+  >
+    <mat-expansion-panel-header class="rounded">
       <mat-panel-description>
-        <b>{{ item.name }}</b>
+        <span class="text-black">{{ item.name }}</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
     @if (item.name === 'Descuentos') {
@@ -45,7 +54,7 @@
             class="w-100"
             (click)="addFilter('sale', discount)"
           >
-            <span class="text-black"
+            <span
               ><i>{{ discount }}%</i></span
             >
           </mat-checkbox>
@@ -107,4 +116,8 @@
     }
   </mat-expansion-panel>
 </mat-accordion>
+<div class="w-100 d-flex justify-content-center">
+  <mat-divider></mat-divider>
+</div>
+
 } }

@@ -6,12 +6,6 @@ a {
   color: black;
 }
 
-.imgg {
-  height: 30rem;
-  width: 100%;
-  object-fit: contain; /* Escala la imagen manteniendo la relación de aspecto y cubriendo el área disponible */
-}
-
 a, .size {
     cursor: pointer;
 }
@@ -69,7 +63,11 @@ mat-panel-description {
 mat-drawer-content {
   min-height: 100vh;
   max-width: 100wh;
-  background-color: white;
+}
+
+mat-drawer {
+  box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+  margin-top: 0.25rem;
 }
 
 mat-expansion-panel {
@@ -95,6 +93,14 @@ mat-slider {
 
 .drawer-resp {
 display: none;
+}
+
+.filterStateAction {
+  cursor: pointer;
+}
+
+.mat-divider {
+  border-top-color: rgb(228, 225, 225);
 }
 
 @media only screen and (max-width: 992px) {

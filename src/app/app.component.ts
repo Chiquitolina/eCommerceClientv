@@ -22,7 +22,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { SideCartComponent } from './components/public/side-cart/side-cart.component';
-import { ScrollService } from './scroll.service';
+import { ScrollService } from './services/scroll/scroll.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
