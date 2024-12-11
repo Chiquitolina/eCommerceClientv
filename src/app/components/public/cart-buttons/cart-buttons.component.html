@@ -1,0 +1,21 @@
+@if (showCartButtons) {
+
+<div class="mat-fab">
+  <button class="minifab" mat-mini-fab color="accent">
+    <b>{{ this.currentCart.totalItems }}</b>
+  </button>
+  <button
+    class="minifabempty"
+    mat-mini-fab
+    color="accent"
+    (click)="cleanCartEmit()"
+    [disabled]="this.currentCart.items.length == 0"
+  >
+    <mat-icon>remove_shopping_cart</mat-icon>
+  </button>
+  <button (click)="toggleDrawerEmit()" mat-fab color="accent">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</div>
+
+}

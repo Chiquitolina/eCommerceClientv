@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
 
   @Input() productSend?: any; // Recibe el producto del componente padre
   @Input() isLoading: boolean = true // Recibe el producto del componente padre
@@ -26,9 +26,6 @@ export class ProductCardComponent implements OnInit {
   public dialog = inject(MatDialog)
   dragDropService = inject(DragDropService)
 
-  ngOnInit() {
-    console.log(this.isLoading)
-  }
 
   openDialog(
     enterAnimationDuration: string,

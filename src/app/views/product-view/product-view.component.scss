@@ -1,19 +1,6 @@
-.cuotas-cartel {
-  height: 4rem;
-}
-
 .div-half-two {
    overflow-y: auto; 
    scrollbar-width: thin;
-}
-
-a {
-  color: black;
-}
-
-.miniimgs {
-  z-index: 10000;
-  cursor: pointer;
 }
 
 .mini {
@@ -22,15 +9,6 @@ a {
 
 .selected-img {
   border: 0.5px solid gainsboro;
-}
-
-.discount {
-  margin-left: 0.5rem;
-  color: green;
-}
-
-.acordiontitle {
-  font-weight: 500;
 }
 
 @media (max-width: 768px) {

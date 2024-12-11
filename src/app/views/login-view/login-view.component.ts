@@ -5,13 +5,12 @@ import {
   FormGroupDirective,
   NgForm,
   Validators,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,10 +32,18 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-login-view',
   standalone: true,
-  imports: [MatCardModule, HttpClientModule, CommonModule, MatButtonModule, MatInputModule, ReactiveFormsModule, MatButton, MatFormFieldModule],
+  imports: [
+    MatCardModule,
+    CommonModule,
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButton,
+    MatFormFieldModule,
+  ],
   templateUrl: './login-view.component.html',
   styleUrl: './login-view.component.scss',
-  providers: [AuthService]
+  providers: [AuthService],
 })
 export class LoginViewComponent {
   constructor(private authSer: AuthService, private router: Router) {}
@@ -59,16 +66,13 @@ export class LoginViewComponent {
         adminUser: this.loginForm.value.emailFormControl || '',
         adminPassword: this.loginForm.value.passwordFormControl || '',
       };
-      this.authSer.authenticate(credentials).subscribe(
-        (response: any) => {
+      this.authSer.authenticate(credentials).subscribe({
+        next: (response: any) => {
           console.log('Login exitoso!', response);
           localStorage.setItem('token', response.token);
           this.router.navigate(['/admin']);
         },
-        (error: any) => {
-          console.log(error);
-        }
-      );
+      });
     }
   }
 

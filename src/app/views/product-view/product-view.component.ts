@@ -1,39 +1,33 @@
 import { Component, inject } from '@angular/core';
-import { productSelectedAccordionObject } from '../../common/constants';
-import { ProductsService } from '../../services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../../services/cart/cart.service';
-import { CartItem } from '../../models/CartItem';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
-import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { SizesAvailableComponent } from '../../components/public/sizes-available/sizes-available.component';
+
+import { productSelectedAccordionObject } from '../../common/constants';
+import { CartItem } from '../../models/CartItem';
+
+import { ProductsService } from '../../services/products/products.service';
+import { CartService } from '../../services/cart/cart.service';
+
+import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
+
+import { MatIcon } from '@angular/material/icon';
+
+import { RatingModule } from 'primeng/rating';
 import { CardModule } from 'primeng/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { InputNumberModule } from 'primeng/inputnumber';
+
+import { SizesAvailableComponent } from '../../components/public/sizes-available/sizes-available.component';
 @Component({
   selector: 'app-product-view',
   standalone: true,
   imports: [
-    HttpClientModule,
     CommonModule,
-    MatExpansionModule,
     MatIcon,
     DiscountPricePipe,
-    NgxImageZoomModule,
     RatingModule,
     FormsModule,
-    MatTooltipModule,
     SizesAvailableComponent,
     CardModule,
-    InputNumberModule,
-    MatFormFieldModule,
   ],
   templateUrl: './product-view.component.html',
   styleUrl: './product-view.component.scss',
@@ -68,9 +62,6 @@ export class ProductViewComponent {
           next: (data) => {
             this.product = data;
             this.selectedImage = this.product.image;
-          },
-          error: (error) => {
-            console.error('Error fetching product:', error);
           },
         });
       }

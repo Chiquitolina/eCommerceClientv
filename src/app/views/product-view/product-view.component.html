@@ -8,7 +8,7 @@
             <div>
               <img
                 [ngClass]="{ 'selected-img': selectedImage === item }"
-                class="w-100 rounded mb-3 mini"
+                class="w-100 rounded mb-3 mini pointer"
                 (click)="changeImage(item)"
                 src="{{ item }}"
                 alt=""
@@ -17,12 +17,7 @@
             }
           </div>
           <div class="col col-xl-10 col-md-10 col-sm-12 borders">
-            <img
-              class="mini img"
-              src="{{ selectedImage }}"
-              alt=""
-              style="width: 100%"
-            />
+            <img class="w-100" src="{{ selectedImage }}" alt="" />
           </div>
         </div>
       </div>
@@ -49,16 +44,16 @@
                   ${{ product?.price | number }}
                 </span>
                 <div class="d-flex justify-content-between w-100">
-                <h5 class="text-black">
-                  ${{
-                    (product.price | discountPrice : product.discount)
-                      .discountedPrice | number
-                  }}
-                </h5>
-                <i class="card-text discount">
-                  {{ product.discount }}% de descuento
-                </i>
-              </div>
+                  <h5 class="text-black">
+                    ${{
+                      (product.price | discountPrice : product.discount)
+                        .discountedPrice | number
+                    }}
+                  </h5>
+                  <i class="card-text text-success">
+                    {{ product.discount }}% de descuento
+                  </i>
+                </div>
               </div>
 
               } @else {

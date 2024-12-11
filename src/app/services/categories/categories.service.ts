@@ -6,18 +6,12 @@ import { catchError, pipe, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class CategoriesService {
-  baseUrl = 'https://ecommerce-0028.onrender.com';
- /* baseUrl = 'http://localhost:3000';*/
+  /*baseUrl = 'https://ecommerce-0028.onrender.com';*/
+  baseUrl = 'http://localhost:3000';
 
   http = inject(HttpClient);
 
   getCategories() {
-    return this.http.get<any[]>(`${this.baseUrl}/get-categories`).pipe(
-      tap((data: any) => {}),
-      catchError((error) => {
-        console.error('Error updating product:', error);
-        return throwError(() => error);
-      })
-    );
+    return this.http.get<any[]>(`${this.baseUrl}/get-categories`);
   }
 }

@@ -23,7 +23,8 @@ import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { SideCartComponent } from './components/public/side-cart/side-cart.component';
 import { ScrollService } from './services/scroll/scroll.service';
-
+import { CartButtonsComponent } from './components/public/cart-buttons/cart-buttons.component';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -46,6 +47,7 @@ import { ScrollService } from './services/scroll/scroll.service';
     InputTextModule,
     AccordionModule,
     SideCartComponent,
+    CartButtonsComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -57,13 +59,14 @@ export class AppComponent {
 
   public cartSer = inject(CartService);
   dragDropService = inject(DragDropService);
+  private http = inject(HttpClient)
 
   isSideCartOpen: boolean = false;
 
   currentCart!: Cart;
   private cartSubscription!: Subscription;
 
-  constructor(private scrollService: ScrollService) {}
+  constructor() {}
 
   public cleanCartEvent() {
     this.cartSer.clearCart();
@@ -74,13 +77,6 @@ export class AppComponent {
   // Método para abrir/cerrar el side cart
   toggleSideCart() {
     this.isSideCartOpen = !this.isSideCartOpen;
-  }
-
-  ngOnInit(): void {
-    // Nos suscribimos al observable del carrito
-    this.cartSubscription = this.cartSer.cart$.subscribe((cart) => {
-      this.currentCart = cart;
-    });
   }
 
   getCurrentCart(): void {
@@ -107,7 +103,6 @@ export class AppComponent {
         { product, cantidad: 1, sizes: [{ size: '', quantity: 0 }] },
         draggedItem.name
       );
-      console.log('Producto agregado al carrito:', draggedItem);
     }
     this.dragDropService.clearDraggedItem();
   }

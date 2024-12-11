@@ -5,7 +5,7 @@ import { CartService } from '../../../services/cart/cart.service';
 import { Subscription } from 'rxjs';
 import { Cart } from '../../../models/Cart';
 import { CartItemsComponent } from '../cart-items/cart-items.component';
-import { CheckoutComponent } from '../../checkout/checkout.component';
+import { CheckoutComponent } from '../checkout/checkout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -40,7 +40,6 @@ export class SideCartComponent {
     this.cartSubscription = this.cartSer.cart$.subscribe((cart) => {
       this.currentCart = cart;
     });
-    console.log(this.currentCart)
   }
 
   getCurrentCart(): void {

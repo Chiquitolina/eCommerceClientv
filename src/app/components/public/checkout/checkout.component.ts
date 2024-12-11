@@ -5,18 +5,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 
-import { CartService } from '../../services/cart/cart.service';
-import { PaymentsService } from '../../services/payments/payments.service';
-import { CartItemsComponent } from '../public/cart-items/cart-items.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../../services/cart/cart.service';
+import { PaymentsService } from '../../../services/payments/payments.service';
+import { CartItemsComponent } from '../cart-items/cart-items.component';
+import { HttpClient } from '@angular/common/http';
 
-import { Cart } from '../../models/Cart';
+import { Cart } from '../../../models/Cart';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CheckoutComponent, CartItemsComponent, MatStepperModule, MatButtonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CheckoutComponent, CartItemsComponent, MatStepperModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
   providers: [PaymentsService]

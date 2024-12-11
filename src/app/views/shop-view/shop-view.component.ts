@@ -1,43 +1,40 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
+import { FiltersService } from '../../services/filters/filters.service';
+import { ProductsService } from '../../services/products/products.service';
 
 import { Product } from '../../models/Products';
 import { PRODUCT_SIZES } from '../../common/constants';
 import { FilterState } from '../../models/FiltersState';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
-import { ArticlesDisplayComponent } from '../../components/public/articles-display/articles-display.component';
 import { ProductCardComponent } from '../../components/public/product-card/product-card.component';
-import { ProductsService } from '../../services/products/products.service';
-import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 import { AccordionFiltersComponent } from '../../components/public/accordion-filters/accordion-filters.component';
-import { FiltersService } from '../../services/filters/filters.service';
+
+import { CapitalizePipe } from '../../pipes/capitalize/capitalize.pipe';
 import { ReplaceCharPipe } from '../../pipes/replaceChar/replace-char.pipe';
-import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-shop-view',
   standalone: true,
   imports: [
-    ArticlesDisplayComponent,
     CommonModule,
     MatButtonModule,
     ProductCardComponent,
-    HttpClientModule,
     MatSidenavModule,
     MatIcon,
     FormsModule,
     CapitalizePipe,
     AccordionFiltersComponent,
     ReplaceCharPipe,
-    MatDividerModule
+    MatDividerModule,
   ],
   templateUrl: './shop-view.component.html',
   styleUrl: './shop-view.component.scss',
@@ -45,9 +42,9 @@ import {MatDividerModule} from '@angular/material/divider';
 })
 export class ShopViewComponent {
   productSer = inject(ProductsService);
-  filterSer = inject(FiltersService)
+  filterSer = inject(FiltersService);
   route = inject(ActivatedRoute);
-  router = inject(Router)
+  router = inject(Router);
 
   products: Product[] = [];
 
@@ -68,7 +65,6 @@ export class ShopViewComponent {
   isLoading!: boolean;
 
   ngOnInit() {
-
     this.isLoading = true;
     // Suscribirse a los parámetros de la ruta y cargar productos cuando cambien
     this.route.params.subscribe((params) => {
@@ -98,32 +94,35 @@ export class ShopViewComponent {
     }, 2000); // Simula una carga de 3 segundos
   }
 
-    loadProducts(): void {
-      this.products = [];
-  
-      // Obtener los filtros seleccionados
-      const selectedFilters = this.filterSer.getCurrentFilters();
+  loadProducts(): void {
+    this.products = [];
 
-      const sizeFilters = selectedFilters.size ? selectedFilters.size.map(size => size.toString()) : [];
-      const saleFilters = selectedFilters.sale ? selectedFilters.sale.map(size => size.toString()) : [];
-  
-      // Solicitar productos usando el servicio, pasando también los filtros
-      this.productSer.getProducts(this.category, this.subcategory, {
+    // Obtener los filtros seleccionados
+    const selectedFilters = this.filterSer.getCurrentFilters();
+
+    const sizeFilters = selectedFilters.size
+      ? selectedFilters.size.map((size) => size.toString())
+      : [];
+    const saleFilters = selectedFilters.sale
+      ? selectedFilters.sale.map((size) => size.toString())
+      : [];
+
+    // Solicitar productos usando el servicio, pasando también los filtros
+    this.productSer
+      .getProducts(this.category, this.subcategory, {
         sale: saleFilters,
         size: sizeFilters,
         price: selectedFilters.price,
-      }).subscribe({
+      })
+      .subscribe({
         next: (data) => {
           this.products = data;
-  
+
           this.rangeValues = [0, this.getMaxProductPrice()];
-  
+
           this.subcategory === 'calzado'
             ? (this.sizes = PRODUCT_SIZES.Calzados)
             : (this.sizes = PRODUCT_SIZES.Ropa);
-        },
-        error: (error) => {
-          console.error('Error al cargar productos:', error);
         },
       });
   }
@@ -139,11 +138,11 @@ export class ShopViewComponent {
   }
 
   onFiltersChanged(newFilters: any) {
-    console.log("New Filters:", newFilters); // Agrega esta línea para depurar
+    console.log('New Filters:', newFilters); // Agrega esta línea para depurar
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: newFilters,
-      queryParamsHandling: 'merge' // Mantiene los query params existentes y agrega o actualiza los nuevos
+      queryParamsHandling: 'merge', // Mantiene los query params existentes y agrega o actualiza los nuevos
     });
   }
 
@@ -153,6 +152,6 @@ export class ShopViewComponent {
 
   cleanFilters() {
     this.filterSer.cleanFilters();
-    this.loadProducts()
+    this.loadProducts();
   }
 }

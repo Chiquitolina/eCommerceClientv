@@ -6,32 +6,29 @@ import { RouterLink } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { CategoriesService } from '../../../services/categories/categories.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CapitalizePipe } from '../../../pipes/capitalize/capitalize.pipe';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReplaceCharPipe } from '../../../pipes/replaceChar/replace-char.pipe';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     MatMenuModule,
-    HttpClientModule,
     MenubarModule,
     CommonModule,
     RouterLink,
     CapitalizePipe,
     ReplaceCharPipe,
     InputTextModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   providers: [CategoriesService],
 })
 export class NavbarComponent {
-  
   categoriesServ = inject(CategoriesService);
   categories: Array<any> = [];
   menuMap: { [key: number]: any } = {}; // Definimos el objeto menuMap
@@ -51,8 +48,6 @@ export class NavbarComponent {
       next: (data) => {
         this.categories = data;
       },
-      error: (e) => console.error(e),
     });
   }
-
 }
