@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Cart } from '../../../models/Cart';
-import { CartService } from '../../../services/cart/cart.service';
+import { CartService } from '../../../../core/services/cart/cart.service';
 import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

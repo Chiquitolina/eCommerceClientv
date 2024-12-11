@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ArticlesDisplayComponent } from '../../components/public/articles-display/articles-display.component';
+import { ArticlesDisplayComponent } from '../../shared/components/public/articles-display/articles-display.component';
 import { CarouselModule } from 'primeng/carousel';
 import { IMGS_BANNER_HEADER } from '../../common/constants';
 @Component({

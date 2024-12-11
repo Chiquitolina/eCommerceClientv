@@ -5,8 +5,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 
-import { CartService } from '../../../services/cart/cart.service';
-import { PaymentsService } from '../../../services/payments/payments.service';
+import { CartService } from '../../../../core/services/cart/cart.service';
+import { PaymentsService } from '../../../../core/services/payments/payments.service';
 import { CartItemsComponent } from '../cart-items/cart-items.component';
 import { HttpClient } from '@angular/common/http';
 

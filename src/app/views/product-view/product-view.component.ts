@@ -4,19 +4,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { productSelectedAccordionObject } from '../../common/constants';
-import { CartItem } from '../../models/CartItem';
+import { CartItem } from '../../shared/models/CartItem';
 
-import { ProductsService } from '../../services/products/products.service';
-import { CartService } from '../../services/cart/cart.service';
+import { ProductsService } from '../../core/services/products/products.service';
+import { CartService } from '../../core/services/cart/cart.service';
 
-import { DiscountPricePipe } from '../../pipes/discountPrice/discount-price.pipe';
+import { DiscountPricePipe } from '../../core/pipes/discountPrice/discount-price.pipe';
 
 import { MatIcon } from '@angular/material/icon';
 
 import { RatingModule } from 'primeng/rating';
 import { CardModule } from 'primeng/card';
 
-import { SizesAvailableComponent } from '../../components/public/sizes-available/sizes-available.component';
+import { SizesAvailableComponent } from '../../shared/components/public/sizes-available/sizes-available.component';
 @Component({
   selector: 'app-product-view',
   standalone: true,

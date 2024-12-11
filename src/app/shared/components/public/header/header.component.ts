@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { carouselHeaderObject } from '../../../common/constants';
+import { carouselHeaderObject } from '../../../../common/constants';
 import { Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 

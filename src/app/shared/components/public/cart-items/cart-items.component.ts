@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { CartService } from '../../../services/cart/cart.service';
+import { CartService } from '../../../../core/services/cart/cart.service';
 import { MatButtonModule } from '@angular/material/button';
 import { Cart } from '../../../models/Cart';
 import { Subscription } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { CartService } from '../../../services/cart/cart.service';
+import { CartService } from '../../../../core/services/cart/cart.service';
 import { Subscription } from 'rxjs';
 import { Cart } from '../../../models/Cart';
 import { CartItemsComponent } from '../cart-items/cart-items.component';

@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ButtonModule } from 'primeng/button';
-import { PRODUCT_SIZES } from '../../../common/constants';
+import { PRODUCT_SIZES } from '../../../../common/constants';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { CarouselModule } from 'primeng/carousel';

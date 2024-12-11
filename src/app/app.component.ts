@@ -1,19 +1,19 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/public/header/header.component';
-import { FooterComponent } from './components/public/footer/footer.component';
+import { HeaderComponent } from './shared/components/public/header/header.component';
+import { FooterComponent } from './shared/components/public/footer/footer.component';
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
-import { CartService } from './services/cart/cart.service';
-import { CartItem } from './models/CartItem';
-import { Cart } from './models/Cart';
+import { CartService } from './core/services/cart/cart.service';
+import { CartItem } from './shared/models/CartItem';
+import { Cart } from './shared/models/Cart';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card'; // Si usas tarjetas
 import { MatDividerModule } from '@angular/material/divider'; // Si usas divisores
-import { CartItemsComponent } from './components/public/cart-items/cart-items.component';
+import { CartItemsComponent } from './shared/components/public/cart-items/cart-items.component';
 import { Subscription } from 'rxjs';
-import { DragDropService } from './services/dragdrop/drag-drop.service';
+import { DragDropService } from './core/services/dragdrop/drag-drop.service';
 import { DragDropModule } from 'primeng/dragdrop';
 import { FormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -21,9 +21,9 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
-import { SideCartComponent } from './components/public/side-cart/side-cart.component';
-import { ScrollService } from './services/scroll/scroll.service';
-import { CartButtonsComponent } from './components/public/cart-buttons/cart-buttons.component';
+import { SideCartComponent } from './shared/components/public/side-cart/side-cart.component';
+import { ScrollService } from './core/services/scroll/scroll.service';
+import { CartButtonsComponent } from './shared/components/public/cart-buttons/cart-buttons.component';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
@@ -59,7 +59,8 @@ export class AppComponent {
 
   public cartSer = inject(CartService);
   dragDropService = inject(DragDropService);
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
+  private scrollServ = inject(ScrollService)
 
   isSideCartOpen: boolean = false;
 

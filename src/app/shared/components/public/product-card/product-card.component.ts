@@ -3,11 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { SizesAvailableComponent } from '../sizes-available/sizes-available.component';
 import { MatCard } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
-import { DiscountPricePipe } from '../../../pipes/discountPrice/discount-price.pipe';
+import { DiscountPricePipe } from '../../../../core/pipes/discountPrice/discount-price.pipe';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { DragDropModule } from 'primeng/dragdrop';
-import { DragDropService } from '../../../services/dragdrop/drag-drop.service';
+import { DragDropService } from '../../../../core/services/dragdrop/drag-drop.service';
 import { MatButtonModule, MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 @Component({

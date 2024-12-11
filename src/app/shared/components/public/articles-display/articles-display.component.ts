@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductsService } from '../../../services/products/products.service';
+import { ProductsService } from '../../../../core/services/products/products.service';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';

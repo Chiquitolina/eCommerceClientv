@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { STORE_NAVBAR_MENU } from '../../../common/constants';
+import { STORE_NAVBAR_MENU } from '../../../../common/constants';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { CategoriesService } from '../../../services/categories/categories.service';
-import { CapitalizePipe } from '../../../pipes/capitalize/capitalize.pipe';
+import { CategoriesService } from '../../../../core/services/categories/categories.service';
+import { CapitalizePipe } from '../../../../core/pipes/capitalize/capitalize.pipe';
 import { InputTextModule } from 'primeng/inputtext';
-import { ReplaceCharPipe } from '../../../pipes/replaceChar/replace-char.pipe';
+import { ReplaceCharPipe } from '../../../../core/pipes/replaceChar/replace-char.pipe';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
