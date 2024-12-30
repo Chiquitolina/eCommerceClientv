@@ -7,6 +7,7 @@ import { CartItem } from '../../../shared/models/CartItem';
   providedIn: 'root',
 })
 export class CartService {
+  private cartKey = 'ecommerce-cart';
 
   private cartSubject = new BehaviorSubject<Cart>({
     items: [],
@@ -15,6 +16,25 @@ export class CartService {
   });
 
   cart$: Observable<Cart> = this.cartSubject.asObservable();
+
+  constructor() {
+    const storedCart = localStorage.getItem(this.cartKey);
+    if (storedCart) {
+      const parsedCart = JSON.parse(storedCart);
+      const expirationTime = 60 * 60 * 1000;
+
+      if (Date.now() - parsedCart.timestamp < expirationTime) {
+        this.cartSubject.next(parsedCart);
+      } else {
+        localStorage.removeItem(this.cartKey);
+      }
+    }
+
+    this.cart$.subscribe((cart) => {
+      const cartWithTimestamp = { ...cart, timestamp: Date.now() };
+      localStorage.setItem(this.cartKey, JSON.stringify(cartWithTimestamp));
+    });
+  }
 
   addItemToCart(cartItem: CartItem): void {
     const currentCart = this.cartSubject.value;

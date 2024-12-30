@@ -20,7 +20,7 @@ import { CartItem } from '../../../models/CartItem';
 })
 export class CartItemsComponent {
 
- @Input() isSideCartOpen = false;
+ @Input() isSideCartOpen = true;
 
   cartServ = inject(CartService);
   currentCart!: Cart;

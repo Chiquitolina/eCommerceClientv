@@ -18,10 +18,9 @@ h2 {
   cursor: pointer;
 }
 
-/* Clase que se aplica cuando se abre el carrito */
 .side-cart-open .cart-item {
   opacity: 1;
-  transform: translateX(0); /* Al abrir, se establece en su posición original */
+  transform: translateX(0);
 }
 
 /* Clase para aplicar delay a cada item */
