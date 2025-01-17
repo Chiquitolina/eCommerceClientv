@@ -17,19 +17,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 
-import { Cart } from '../../../models/Cart';
+import { CheckProductsComponent } from './components/check-products/check-products.component';
+
+
+import { Cart } from '../shared/models/Cart';
 import { Subscription } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
-import { InputTextModule } from 'primeng/inputtext'
-import { CartService } from '../../../../core/services/cart/cart.service';
-import { PaymentsService } from '../../../../core/services/payments/payments.service';
-import { CartItemsComponent } from '../cart-items/cart-items.component';
-import { GeoNamesService } from '../../../../core/services/geo-names/geo-names.service';
-import { CheckProductsComponent } from '../../../../checkout/components/check-products/check-products.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { CartService } from '../core/services/cart/cart.service';
+import { PaymentsService } from '../core/services/payments/payments.service';
+import { CartItemsComponent } from '../shared/components/public/cart-items/cart-items.component';
+import { GeoNamesService } from '../core/services/geo-names/geo-names.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

@@ -3,23 +3,23 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { FiltersService } from '../../core/services/filters/filters.service';
-import { ProductsService } from '../../core/services/products/products.service';
+import { FiltersService } from '../core/services/filters/filters.service';
+import { ProductsService } from '../core/services/products/products.service';
 
-import { Product } from '../../shared/models/Products';
-import { PRODUCT_SIZES } from '../../common/constants';
-import { FilterState } from '../../shared/models/FiltersState';
+import { Product } from '../shared/models/Products';
+import { PRODUCT_SIZES } from '../common/constants';
+import { FilterState } from '../shared/models/FiltersState';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { ProductCardComponent } from '../../shared/components/public/product-card/product-card.component';
-import { AccordionFiltersComponent } from '../../shared/components/public/accordion-filters/accordion-filters.component';
+import { ProductCardComponent } from '../shared/components/public/product-card/product-card.component';
+import { AccordionFiltersComponent } from './components/accordion-filters/accordion-filters.component';
 
-import { CapitalizePipe } from '../../core/pipes/capitalize/capitalize.pipe';
-import { ReplaceCharPipe } from '../../core/pipes/replaceChar/replace-char.pipe';
+import { CapitalizePipe } from '../core/pipes/capitalize/capitalize.pipe';
+import { ReplaceCharPipe } from '../core/pipes/replaceChar/replace-char.pipe';
 
 @Component({
   selector: 'app-shop-view',

@@ -5,10 +5,10 @@ import { CartService } from '../../../../core/services/cart/cart.service';
 import { Subscription } from 'rxjs';
 import { Cart } from '../../../models/Cart';
 import { CartItemsComponent } from '../cart-items/cart-items.component';
-import { CheckoutComponent } from '../checkout/checkout.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { CheckoutComponent } from '../../../../checkout/checkout.component';
 
 @Component({
   selector: 'app-side-cart',
@@ -57,7 +57,8 @@ export class SideCartComponent {
   ): void {
     this.dialog.open(CheckoutComponent, {
       width: '140%',
-      height: '100%',
+      height: '98%',
+      panelClass: 'checkout-dialog',
       enterAnimationDuration,
       exitAnimationDuration,
     });

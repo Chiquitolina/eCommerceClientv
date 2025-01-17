@@ -1,5 +1,5 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/public/header/header.component';
 import { FooterComponent } from './shared/components/public/footer/footer.component';
 import { MatSidenavModule, MatDrawer } from '@angular/material/sidenav';
@@ -25,6 +25,9 @@ import { SideCartComponent } from './shared/components/public/side-cart/side-car
 import { ScrollService } from './core/services/scroll/scroll.service';
 import { CartButtonsComponent } from './shared/components/public/cart-buttons/cart-buttons.component';
 import { HttpClient } from '@angular/common/http';
+import { FirebaseApp } from '@angular/fire/app'; // Necesario para usar FirebaseApp
+import { getAnalytics, logEvent } from '@angular/fire/analytics';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -67,7 +70,17 @@ export class AppComponent {
   currentCart!: Cart;
   private cartSubscription!: Subscription;
 
-  constructor() {}
+  constructor(private router: Router, private firebaseApp: FirebaseApp) {
+    const analytics = getAnalytics(this.firebaseApp); // Obtener Analytics
+
+    // Escuchar eventos de navegación y enviar eventos a Firebase Analytics
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Firebase Analytics debería enviar automáticamente eventos de vista de página
+        logEvent(analytics, 'page_view', { page_path: event.urlAfterRedirects });
+      }
+    });
+  }
 
   public cleanCartEvent() {
     this.cartSer.clearCart();

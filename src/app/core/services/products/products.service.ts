@@ -9,8 +9,8 @@ import { Product } from '../../../shared/models/Products';
 export class ProductsService {
   http = inject(HttpClient);
 
-  /* baseUrl = 'https://ecommerce-0028.onrender.com';*/
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'https://ecommerce-0028.onrender.com';
+  /*baseUrl = 'http://localhost:3000';*/
 
   public deleteProduct(productId: number): Observable<void> {
     return this.http.delete<any>(`${this.baseUrl}/delete-product`, {

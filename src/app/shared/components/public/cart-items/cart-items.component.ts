@@ -10,10 +10,12 @@ import { DialogModule } from 'primeng/dialog';
 import { SizesAvailableComponent } from '../sizes-available/sizes-available.component';
 import { CommonModule } from '@angular/common';
 import { CartItem } from '../../../models/CartItem';
+import { CardModule } from 'primeng/card';
+
 @Component({
   selector: 'app-cart-items',
   standalone: true,
-  imports: [MatButtonModule, ButtonModule, InputNumberModule, FormsModule, DialogModule, SizesAvailableComponent, CommonModule
+  imports: [MatButtonModule, ButtonModule, CardModule, InputNumberModule, FormsModule, DialogModule, SizesAvailableComponent, CommonModule
   ],
   templateUrl: './cart-items.component.html',
   styleUrl: './cart-items.component.scss',

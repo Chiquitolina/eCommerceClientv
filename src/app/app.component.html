@@ -1,6 +1,6 @@
 <app-cart-buttons (cleanCart)="cleanCartEvent()" (toggleDrawer)="toggleDrawer()"></app-cart-buttons>
 <mat-drawer-container autosize>
-  <mat-drawer #drawer mode="side" position="end" pDroppable (onDrop)="onDrop()">
+  <mat-drawer class="bg-white" #drawer mode="side" position="end" pDroppable (onDrop)="onDrop()">
     <app-side-cart [isSideCartOpen]="isSideCartOpen"></app-side-cart>
   </mat-drawer>
 
