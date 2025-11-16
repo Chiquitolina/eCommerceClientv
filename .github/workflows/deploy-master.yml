@@ -1,0 +1,35 @@
+name: Deploy Angular Impact eCommerce to VPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 1. Instalar dependencias
+      - name: Install dependencies
+        run: npm ci
+
+      # 2. Build Angular
+      - name: Build Angular
+        run: npm run build
+
+      # 3. Agregar clave SSH
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/ci_deploy_key_ecommerce
+          chmod 600 ~/.ssh/ci_deploy_key_ecommerce
+
+      # 4. Subir SOLO la carpeta dist al VPS
+      - name: Upload Angular build to VPS
+        run: |
+          rsync -avz -e "ssh -i ~/.ssh/ci_deploy_key_ecommerce -o StrictHostKeyChecking=no -p5507" \
+          ./dist/*/browser/ root@149.50.150.50:/var/www/ecommerce/server-side/dist/public/
