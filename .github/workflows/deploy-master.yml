@@ -32,4 +32,4 @@ jobs:
       - name: Upload Angular build to VPS
         run: |
           rsync -avz -e "ssh -i ~/.ssh/ci_deploy_key_ecommerce -o StrictHostKeyChecking=no -p5507" \
-          ./dist/*/browser/ root@149.50.150.50:/var/www/ecommerce/server-side/
+          ./dist/*/browser/ root@149.50.150.50:/var/www/ecommerce/server-side/dist/e-comm
