@@ -13,7 +13,7 @@ interface AuthResponse {
 
 export class AuthService {
 
-  private authUrl = 'https://ecommerce-0028.onrender.com/admin/login'
+  private authUrl = 'https://store.impact96.com.ar/admin/login'
 
   private _http = inject(HttpClient)
 

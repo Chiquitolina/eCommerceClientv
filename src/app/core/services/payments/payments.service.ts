@@ -11,6 +11,6 @@ export class PaymentsService {
 
   public createOrder(params: any): Observable<any> {
     console.log(params)
-    return this._http.post('http://localhost:3000/create-order', params);
+    return this._http.post('http://store.impact96.com.ar/create-order', params);
   }
 }
