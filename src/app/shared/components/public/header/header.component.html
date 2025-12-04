@@ -2,28 +2,30 @@
 <!-- <div class="w-100 bg-dark d-flex justify-content-center p-2 text-white">
   <b><span>6 cuotas sin interés en todo el sitio</span></b>
 </div>-->
-<app-navbar></app-navbar>
-<div
-  id="carouselExampleInterval"
-  data-bs-ride="carousel"
-  class="bg-white text-dark carousel slide"
->
-  <div class="carousel-inner text-center text-black">
-    @for (item of carouselHeaderObject; track item; let i = $index) {
-    <div
-      class="carousel-item mt-2"
-      [ngClass]="{ active: i === 0 }"
-      data-bs-interval="5000"
-    >
-      {{ item.key }}
-      <div class="d-flex justify-content-center">
-      <mat-icon>{{item.icon}}</mat-icon>
-      <p>
-        <a href="">{{ item.value }}</a>
-      </p>
+<div class="bg-myblack">
+  <app-navbar></app-navbar>
+  <div
+    id="carouselExampleInterval"
+    data-bs-ride="carousel"
+    class="bg-myblack text-light carousel slide"
+  >
+    <div class="carousel-inner text-center text-light">
+      @for (item of carouselHeaderObject; track item; let i = $index) {
+      <div
+        class="carousel-item mt-2"
+        [ngClass]="{ active: i === 0 }"
+        data-bs-interval="5000"
+      >
+        {{ item.key }}
+        <div class="d-flex justify-content-center">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <p>
+            <a href="">{{ item.value }}</a>
+          </p>
+        </div>
+      </div>
+      }
     </div>
-    </div>
-    }
   </div>
 </div>
 }

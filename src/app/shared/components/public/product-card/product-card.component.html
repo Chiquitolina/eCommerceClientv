@@ -14,7 +14,7 @@
     mat-mini-fab
     aria-label="Example icon button with a menu icon"
   >
-    <b>-</b><i>{{ productSend.discount }}%</i>
+    <b>-{{ productSend.discount }}%</b>
   </button>
   }
   <div class="d-flex w-100 justify-content-center">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="card-details">
-    <b>{{ productSend.name }}</b>
+    <h2>{{ productSend.name }}</h2>
     <p class="card-text text-secondary">{{ productSend.shortdescription }}</p>
     <div class="w-100 card-product-price">
       <h6>

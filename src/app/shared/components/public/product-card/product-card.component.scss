@@ -1,11 +1,13 @@
-
-
 mat-card {
-  background-color: white;
+  background-color: #F6F6F6;
   height: auto; 
   min-height: 28.5rem;
   font-family: "Helvetica Neue Regular";
 
+}
+
+h2 {
+  font-weight: 600;
 }
 
 :host ::ng-deep {
@@ -51,12 +53,11 @@ mat-card {
 
 .discount-mini-fab {
   position: absolute;
-  font-size: 15px;
-}
-
-.discount {
-  color: green;
-  font-size: 15px;
+  top: 16px;
+  left: 16px;
+  font-size: 1rem;
+  background-color: whitesmoke;
+  padding: 2rem;
 }
 
 button {
